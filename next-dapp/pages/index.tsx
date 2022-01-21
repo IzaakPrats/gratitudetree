@@ -1,8 +1,17 @@
+import { useAccount, useConnect } from "wagmi";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useAccount, useConnect } from "wagmi";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "../styles/Home.module.css";
+
+const getShortAddress = (address: string) => {
+  return `${address.substring(0, 4)}...${address.substring(
+    address.length - 4
+  )}`;
+};
 
 const ConnectorComponent = () => {
   const [{ data, error }, connect] = useConnect();
@@ -12,7 +21,9 @@ const ConnectorComponent = () => {
         <button
           className={styles.connectorButton}
           key={x.id}
-          onClick={() => connect(x)}
+          onClick={() => {
+            connect(x);
+          }}
           suppressHydrationWarning
         >
           {x.name}
@@ -33,7 +44,9 @@ const AccountComponent = ({ accountData, error, loading, disconnect }) => {
   return (
     <div className={styles.container}>
       <p>
-        {accountData.ens?.name ? accountData.ens.name : accountData.address}
+        {accountData.ens?.name
+          ? accountData.ens.name
+          : getShortAddress(accountData.address)}
       </p>
       <p>Connected to {accountData.connector.name}</p>
       {canProgrammaticallyDisconnect() ? (
@@ -54,6 +67,23 @@ const Home: NextPage = () => {
     fetchEns: true,
   });
 
+  const [currentAccount, setCurrentAccount] = useState<string | undefined>("");
+
+  useEffect(() => {
+    setCurrentAccount(accountData?.address);
+  }, []);
+
+  useEffect(() => {
+    const accountAddress = accountData?.address;
+    if (accountAddress && accountAddress !== currentAccount) {
+      setCurrentAccount(accountAddress);
+      toast(
+        `Account switched to ${getShortAddress(accountAddress) ?? "undefined"}`,
+        { autoClose: 2000 }
+      );
+    }
+  }, [accountData]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -63,6 +93,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <ToastContainer />
         <h1 className={styles.title}>Welcome to your new DApp</h1>
         <div className={styles.connectorContainer}>
           <div className={styles.containerPadding}>
