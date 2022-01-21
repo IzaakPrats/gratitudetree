@@ -1,3 +1,3 @@
-#Next app files
-next-dapp/.next
+#next app build files
+next-dapp/.next/*
 

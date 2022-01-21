@@ -1,6 +1,5 @@
-import { Provider, chain, defaultChains } from "wagmi";
-import { InjectedConnector } from "wagmi";
 import type { AppProps } from "next/app";
+import { defaultChains, InjectedConnector, Provider } from "wagmi";
 import "../styles/globals.css";
 
 const chains = defaultChains;
