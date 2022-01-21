@@ -1,8 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { Provider, chain, defaultChains } from "wagmi";
+import { InjectedConnector } from "wagmi";
+import type { AppProps } from "next/app";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const chains = defaultChains;
+
+const connectors = () => {
+  return [new InjectedConnector({ chains })];
+};
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <Provider autoConnect connectors={connectors}>
+      <Component {...pageProps} />;
+    </Provider>
+  );
 }
 
-export default MyApp
+export default App;
