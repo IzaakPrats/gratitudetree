@@ -6,12 +6,12 @@ import styles from "../styles/Home.module.css";
 
 const ConnectorComponent = () => {
   const [{ data, error }, connect] = useConnect();
-  console.log(data);
   return (
     <div>
       {data.connectors.map((x) => (
         <button
           className={styles.connectorButton}
+          disabled={!x.ready}
           key={x.id}
           onClick={() => connect(x)}
         >
