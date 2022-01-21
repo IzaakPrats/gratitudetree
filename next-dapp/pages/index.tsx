@@ -11,7 +11,6 @@ const ConnectorComponent = () => {
       {data.connectors.map((x) => (
         <button
           className={styles.connectorButton}
-          disabled={!x.ready}
           key={x.id}
           onClick={() => connect(x)}
         >
@@ -30,14 +29,11 @@ const AccountComponent = ({ accountData, error, loading, disconnect }) => {
     <div className={styles.container}>
       {accountData.ens?.name ? accountData.ens.name : accountData.address}
       <p>Connected to {accountData.connector.name}</p>
-      <button
-        className={styles.cta}
-        onClick={() => {
-          disconnect();
-        }}
-      >
+      <button className={styles.cta} onClick={disconnect}>
         Disconnect
       </button>
+
+      {error && <p>{error?.message ?? "Failed to disconnect"}</p>}
     </div>
   );
 };
