@@ -10,20 +10,17 @@ const ConnectorComponent = () => {
   return (
     <div>
       {data.connectors.map((x) => (
-        <div key={x.id}>
-          <button
-            className={styles.connectorButton}
-            disabled={!x.ready}
-            key={x.id}
-            onClick={() => connect(x)}
-          >
-            {x.name}
-            {!x.ready && " (unsupported)"}
-          </button>
-        </div>
+        <button
+          className={styles.connectorButton}
+          key={x.id}
+          onClick={() => connect(x)}
+        >
+          {x.name}
+          {!x.ready && " (unsupported)"}
+        </button>
       ))}
 
-      {error && <p>{error?.message ?? "Failed to connect"}</p>}
+      {error && <div>{error?.message ?? "Failed to connect"}</div>}
     </div>
   );
 };
