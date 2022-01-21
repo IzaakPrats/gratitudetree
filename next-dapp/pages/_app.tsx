@@ -10,7 +10,7 @@ const connectors = () => {
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider autoConnect connectors={connectors}>
+    <Provider autoConnect={false} connectors={connectors}>
       <Component {...pageProps} />;
     </Provider>
   );
