@@ -52,6 +52,7 @@ a {
 p {
   display: inline-block;
   word-break: break-word;
+  margin: 0.25rem;
 }
 
 * {

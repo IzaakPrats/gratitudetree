@@ -13,6 +13,7 @@ const ConnectorComponent = () => {
           className={styles.connectorButton}
           key={x.id}
           onClick={() => connect(x)}
+          suppressHydrationWarning
         >
           {x.name}
           {!x.ready && " (unsupported)"}
@@ -25,13 +26,23 @@ const ConnectorComponent = () => {
 };
 //@ts-ignore
 const AccountComponent = ({ accountData, error, loading, disconnect }) => {
+  const canProgrammaticallyDisconnect = () => {
+    return accountData.connector.name !== "MetaMask";
+  };
+
   return (
     <div className={styles.container}>
-      {accountData.ens?.name ? accountData.ens.name : accountData.address}
+      <p>
+        {accountData.ens?.name ? accountData.ens.name : accountData.address}
+      </p>
       <p>Connected to {accountData.connector.name}</p>
-      <button className={styles.cta} onClick={disconnect}>
-        Disconnect
-      </button>
+      {canProgrammaticallyDisconnect() ? (
+        <button className={styles.cta} onClick={disconnect}>
+          Disconnect
+        </button>
+      ) : (
+        <p>Disconnect your account directly through Metamask</p>
+      )}
 
       {error && <p>{error?.message ?? "Failed to disconnect"}</p>}
     </div>
