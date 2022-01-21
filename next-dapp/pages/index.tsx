@@ -6,19 +6,21 @@ import styles from "../styles/Home.module.css";
 
 const ConnectorComponent = () => {
   const [{ data, error }, connect] = useConnect();
-
+  console.log(data);
   return (
     <div>
       {data.connectors.map((x) => (
-        <button
-          className={styles.connectorButton}
-          disabled={!x.ready}
-          key={x.id}
-          onClick={() => connect(x)}
-        >
-          {x.name}
-          {!x.ready && " (unsupported)"}
-        </button>
+        <div key={x.id}>
+          <button
+            className={styles.connectorButton}
+            disabled={!x.ready}
+            key={x.id}
+            onClick={() => connect(x)}
+          >
+            {x.name}
+            {!x.ready && " (unsupported)"}
+          </button>
+        </div>
       ))}
 
       {error && <p>{error?.message ?? "Failed to connect"}</p>}
