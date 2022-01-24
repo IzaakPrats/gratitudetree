@@ -1,4 +1,4 @@
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useConnect, useNetwork } from "wagmi";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -66,14 +66,18 @@ const Home: NextPage = () => {
   const [{ data: accountData, error, loading }, disconnect] = useAccount({
     fetchEns: true,
   });
-
+  const [{ data: networkData }] = useNetwork();
   const [currentAccount, setCurrentAccount] = useState<string | undefined>("");
+  const [currentChainId, setCurrentChainId] = useState<number>();
 
   useEffect(() => {
+    console.log("accountData1", accountData);
     setCurrentAccount(accountData?.address);
+    setCurrentChainId(networkData?.chain?.id);
   }, []);
 
   useEffect(() => {
+    console.log("accountData2", accountData);
     const accountAddress = accountData?.address;
     if (accountAddress && accountAddress !== currentAccount) {
       setCurrentAccount(accountAddress);
@@ -83,6 +87,17 @@ const Home: NextPage = () => {
       );
     }
   }, [accountData]);
+
+  useEffect(() => {
+    const chainId = networkData?.chain?.id;
+    if (chainId && chainId !== currentChainId) {
+      const unsupported = networkData.chain.unsupported;
+      setCurrentChainId(chainId);
+      toast(`Chain switched to ${networkData.chain.name}.`, {
+        autoClose: 2000,
+      });
+    }
+  }, [networkData]);
 
   return (
     <div className={styles.container}>
