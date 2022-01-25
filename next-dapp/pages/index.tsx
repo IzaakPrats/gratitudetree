@@ -3,21 +3,19 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAccount, useNetwork } from "wagmi";
+import { useAccount } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
+import Network from "../components/Network";
 import styles from "../styles/Home.module.css";
 import { getShortAddress } from "../utils";
 
 const Home: NextPage = () => {
   const [{ data: accountData }] = useAccount();
-  const [{ data: networkData }] = useNetwork();
   const [currentAccount, setCurrentAccount] = useState<string | undefined>("");
-  const [currentChainId, setCurrentChainId] = useState<number>();
 
   useEffect(() => {
     setCurrentAccount(accountData?.address);
-    setCurrentChainId(networkData?.chain?.id);
   }, []);
 
   useEffect(() => {
@@ -30,17 +28,6 @@ const Home: NextPage = () => {
       );
     }
   }, [accountData]);
-
-  useEffect(() => {
-    const chainId = networkData?.chain?.id;
-    if (chainId && chainId !== currentChainId) {
-      const unsupported = networkData.chain.unsupported;
-      setCurrentChainId(chainId);
-      toast(`Chain switched to ${networkData.chain.name}.`, {
-        autoClose: 2000,
-      });
-    }
-  }, [networkData]);
 
   return (
     <div className={styles.container}>
@@ -55,7 +42,14 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>Welcome to your new DApp</h1>
         <div className={styles.connectorContainer}>
           <div className={styles.containerPadding}>
-            {accountData ? <Account /> : <Connect />}
+            {accountData ? (
+              <div>
+                <Account />
+                <Network />
+              </div>
+            ) : (
+              <Connect />
+            )}
           </div>
         </div>
       </main>
