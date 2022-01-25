@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
 import Network from "../components/Network";
+import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
 import { getShortAddress } from "../utils";
 
@@ -40,18 +41,16 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <ToastContainer />
         <h1 className={styles.title}>Welcome to your new DApp</h1>
-        <div className={styles.connectorContainer}>
-          <div className={styles.containerPadding}>
-            {accountData ? (
-              <div>
-                <Account />
-                <Network />
-              </div>
-            ) : (
-              <Connect />
-            )}
-          </div>
-        </div>
+        <PaddedContainer>
+          {accountData ? (
+            <div>
+              <Account />
+              <Network />
+            </div>
+          ) : (
+            <Connect />
+          )}
+        </PaddedContainer>
       </main>
     </div>
   );
