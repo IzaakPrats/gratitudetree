@@ -26,6 +26,11 @@ async function main() {
   }
   const data = `{"address":"${greeter.address}"}`;
   fs.writeFileSync(`${dir}/local.json`, data);
+  fs.copyFileSync(
+    "artifacts/contracts/Greeter.sol/Greeter.json",
+    `${dir}/Greeter.json`
+  );
+
   console.log("Greeter deployed to:", greeter.address);
 }
 
