@@ -4,6 +4,7 @@
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 import { ethers } from "hardhat";
+import fs from "fs";
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -19,6 +20,12 @@ async function main() {
 
   await greeter.deployed();
 
+  const dir = "deployed_contracts/greeter";
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const data = `{"address":"${greeter.address}"}`;
+  fs.writeFileSync(`${dir}/local.json`, data);
   console.log("Greeter deployed to:", greeter.address);
 }
 
