@@ -20,7 +20,7 @@ async function main() {
 
   await greeter.deployed();
 
-  const dir = "deployed_contracts/greeter";
+  const dir = "deployed_contracts/Greeter";
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }

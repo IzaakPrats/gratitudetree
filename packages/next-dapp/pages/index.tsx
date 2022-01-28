@@ -11,9 +11,10 @@ import Network from "../components/Network";
 import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
 import { getShortAddress } from "../utils";
-import contractJson from "../../hardhat/artifacts/contracts/Greeter.sol/Greeter.json";
+import contractJson from "../data/Greeter/Greeter.json";
+import contractInfo from "../data/Greeter/local.json";
 
-const CONTRACT_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+const CONTRACT_ADDRESS = contractInfo.address;
 const CONTRACT_ABI = contractJson.abi;
 
 const Home: NextPage = () => {
