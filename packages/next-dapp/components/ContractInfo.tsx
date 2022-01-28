@@ -3,7 +3,7 @@ import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
   contractAddress: string;
-  contractAbi: string;
+  contractAbi: any;
 };
 
 const ContractInfo = ({ contractAddress, contractAbi }: ContractInfoProps) => {
@@ -12,7 +12,10 @@ const ContractInfo = ({ contractAddress, contractAbi }: ContractInfoProps) => {
       addressOrName: contractAddress,
       contractInterface: contractAbi,
     },
-    "greet"
+    "greet",
+    {
+      watch: true,
+    }
   );
 
   return (
