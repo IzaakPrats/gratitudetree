@@ -30,8 +30,6 @@ const Account = () => {
       ) : (
         <p>Disconnect your account directly through Metamask</p>
       )}
-
-      {error && <p>{error?.message ?? "Failed to disconnect"}</p>}
     </div>
   );
 };

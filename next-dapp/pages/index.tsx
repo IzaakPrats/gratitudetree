@@ -6,10 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAccount } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
+import ContractInfo from "../components/ContractInfo";
 import Network from "../components/Network";
 import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
 import { getShortAddress } from "../utils";
+import contractJson from "../../hardhat/artifacts/contracts/Greeter.sol/Greeter.json";
+
+const CONTRACT_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+const CONTRACT_ABI = contractJson.abi;
 
 const Home: NextPage = () => {
   const [{ data: accountData }] = useAccount();
@@ -51,6 +56,14 @@ const Home: NextPage = () => {
             <Connect />
           )}
         </PaddedContainer>
+        {accountData && (
+          <PaddedContainer>
+            <ContractInfo
+              contractAddress={CONTRACT_ADDRESS}
+              contractAbi={CONTRACT_ABI}
+            />
+          </PaddedContainer>
+        )}
       </main>
     </div>
   );
