@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
 import GreeterContractInfo from "../components/GreeterContractInfo";
+import TweeterContractInfo from "../components/TweeterContractInfo";
 import Network from "../components/Network";
 import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
@@ -53,9 +54,14 @@ const Home: NextPage = () => {
           )}
         </PaddedContainer>
         {accountData && (
-          <PaddedContainer>
-            <GreeterContractInfo />
-          </PaddedContainer>
+          <div>
+            <PaddedContainer>
+              <GreeterContractInfo />
+            </PaddedContainer>
+            <PaddedContainer>
+              <TweeterContractInfo />
+            </PaddedContainer>
+          </div>
         )}
       </main>
     </div>
