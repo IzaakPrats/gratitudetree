@@ -3,4 +3,4 @@ packages/next-dapp/.next/*
 
 # Generated contract deploy files
 packages/next-dapp/data/*
-hardhat/deployed_contracts/*
+packages/hardhat/deployed_contracts/*
