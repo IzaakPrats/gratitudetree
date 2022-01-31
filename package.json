@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy-contract-local": "npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts && node scripts/copy_contract_data.ts --name Greeter"
+    "deploy-contract-local": "npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts && node scripts/copy_contract_data.ts"
   },
   "author": "",
   "license": "ISC",

@@ -16,7 +16,7 @@ async function main() {
 
   // We get the contract to deploy
   const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("3rd try.");
+  const greeter = await Greeter.deploy("4th success.");
 
   await greeter.deployed();
 
