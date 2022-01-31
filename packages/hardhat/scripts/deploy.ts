@@ -16,7 +16,8 @@ async function main() {
 
   // We get the contract to deploy
   const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("4th success.");
+  const greeter = await Greeter.deploy("GOERLI");
+  const network = await greeter.provider.getNetwork();
 
   await greeter.deployed();
 
@@ -25,12 +26,12 @@ async function main() {
     fs.mkdirSync(dir, { recursive: true });
   }
   const data = `{"address":"${greeter.address}"}`;
-  fs.writeFileSync(`${dir}/local.json`, data);
+  fs.writeFileSync(`${dir}/${network.name}.json`, data);
   fs.copyFileSync(
     "artifacts/contracts/Greeter.sol/Greeter.json",
     `${dir}/Greeter.json`
   );
-
+  console.log("Deployed to network: ", network);
   console.log("Greeter deployed to:", greeter.address);
 }
 
