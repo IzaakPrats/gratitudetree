@@ -25,9 +25,17 @@ const ContractInfo = ({
 
   return (
     <div className={utilStyles.container}>
-      <p>{contractName}</p>
-      <p>Contract address is {contractAddress}</p>
-      <p>{data}</p>
+      <p>
+        {" "}
+        <span className={utilStyles.field}>Contract name:</span> {contractName}
+      </p>
+      <p>
+        <span className={utilStyles.field}>Contract address:</span>{" "}
+        {contractAddress}
+      </p>
+      <p>
+        <span className={utilStyles.field}>Greeting:</span> {data}
+      </p>
     </div>
   );
 };

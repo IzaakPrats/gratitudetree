@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  border: 1px solid darkslategray;
+  border: 1px solid #ffffff;
   border-radius: 0.5rem;
   margin-top: 64px;
   min-width: 500px;

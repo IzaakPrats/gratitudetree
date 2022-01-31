@@ -22,7 +22,10 @@ const Account = () => {
           ? accountData.ens.name
           : getShortAddress(accountData.address)}
       </p>
-      <p>Connected to {accountData.connector?.name}</p>
+      <p>
+        Connected to{" "}
+        <span className={utilStyles.field}>{accountData.connector?.name}</span>
+      </p>
       {canProgrammaticallyDisconnect() ? (
         <button className={utilStyles.cta} onClick={disconnect}>
           Disconnect

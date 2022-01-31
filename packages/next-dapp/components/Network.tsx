@@ -11,7 +11,10 @@ const Network = () => {
   const currentChain = networkData.chain;
   return (
     <div className={utilStyles.container}>
-      <p>Connected to {currentChain.name}.</p>
+      <p>
+        Connected to{" "}
+        <span className={utilStyles.field}>{currentChain.name}</span>.
+      </p>
       {currentChain.unsupported && <p>{currentChain.name} unsupported.</p>}
     </div>
   );
