@@ -2,11 +2,16 @@ import { useContractRead } from "wagmi";
 import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
+  contractName: string;
   contractAddress: string;
   contractAbi: any;
 };
 
-const ContractInfo = ({ contractAddress, contractAbi }: ContractInfoProps) => {
+const ContractInfo = ({
+  contractName,
+  contractAddress,
+  contractAbi,
+}: ContractInfoProps) => {
   const [{ data, error, loading }, read] = useContractRead(
     {
       addressOrName: contractAddress,
@@ -20,6 +25,7 @@ const ContractInfo = ({ contractAddress, contractAbi }: ContractInfoProps) => {
 
   return (
     <div className={utilStyles.container}>
+      <p>{contractName}</p>
       <p>Contract address is {contractAddress}</p>
       <p>{data}</p>
     </div>
