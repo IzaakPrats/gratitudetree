@@ -6,7 +6,7 @@ type ContractInfoProps = {
   methodName: string;
 };
 
-const ContractInfo2 = ({ contractName, methodName }: ContractInfoProps) => {
+const ContractInfo = ({ contractName, methodName }: ContractInfoProps) => {
   const { data, address } = useReadContractInfo({
     contractName: contractName,
     methodName: methodName,
@@ -28,4 +28,4 @@ const ContractInfo2 = ({ contractName, methodName }: ContractInfoProps) => {
   );
 };
 
-export default ContractInfo2;
+export default ContractInfo;
