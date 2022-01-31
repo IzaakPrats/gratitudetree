@@ -1,10 +1,6 @@
 #next app build files
 packages/next-dapp/.next/*
 
-# Generated contract deploy files
-packages/next-dapp/data/*
-packages/hardhat/deployed_contracts/*
-
 # Env files.
 packages/next-dapp/.env
 packages/hardhat/.env
