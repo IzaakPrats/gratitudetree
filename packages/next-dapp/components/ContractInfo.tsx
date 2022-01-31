@@ -1,43 +1,31 @@
-import { useContractRead } from "wagmi";
+import useReadContractInfo from "../hooks/useReadContractInfo";
 import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
   contractName: string;
-  contractAddress: string;
-  contractAbi: any;
+  methodName: string;
 };
 
-const ContractInfo = ({
-  contractName,
-  contractAddress,
-  contractAbi,
-}: ContractInfoProps) => {
-  const [{ data, error, loading }, read] = useContractRead(
-    {
-      addressOrName: contractAddress,
-      contractInterface: contractAbi,
-    },
-    "greet",
-    {
-      watch: true,
-    }
-  );
+const ContractInfo2 = ({ contractName, methodName }: ContractInfoProps) => {
+  const { data, address } = useReadContractInfo({
+    contractName: contractName,
+    methodName: methodName,
+  });
 
   return (
     <div className={utilStyles.container}>
+      <p>
+        <span className={utilStyles.field}>Contract Address:</span> {address}
+      </p>
       <p>
         {" "}
         <span className={utilStyles.field}>Contract name:</span> {contractName}
       </p>
       <p>
-        <span className={utilStyles.field}>Contract address:</span>{" "}
-        {contractAddress}
-      </p>
-      <p>
-        <span className={utilStyles.field}>Greeting:</span> {data}
+        <span className={utilStyles.field}>Read {methodName}:</span> {data}
       </p>
     </div>
   );
 };
 
-export default ContractInfo;
+export default ContractInfo2;

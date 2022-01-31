@@ -16,7 +16,7 @@ async function main() {
 
   // We get the contract to deploy
   const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("GOERLI");
+  const greeter = await Greeter.deploy("LOCALHOST");
   const network = await greeter.provider.getNetwork();
 
   await greeter.deployed();
