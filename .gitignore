@@ -4,3 +4,5 @@ packages/next-dapp/.next/*
 # Env files.
 packages/next-dapp/.env
 packages/hardhat/.env
+
+node_modules/*
