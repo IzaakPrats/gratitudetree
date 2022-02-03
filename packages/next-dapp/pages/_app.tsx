@@ -18,8 +18,8 @@ const localhostChain: Chain = {
   testnet: true,
 };
 
-const chains = [chain.goerli, chain.mainnet, localhostChain];
-const defaultChain = chain.mainnet;
+const chains = [chain.goerli, localhostChain];
+const defaultChain = localhostChain;
 
 const connectors = () => {
   return [new InjectedConnector({ chains })];
