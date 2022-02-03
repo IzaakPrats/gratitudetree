@@ -28,7 +28,7 @@ function writeOutputData(
 async function main() {
   // Deploy greeter
   const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Greetings, goerli.");
+  const greeter = await Greeter.deploy("Greetings, GOERLI.");
   const network = await greeter.provider.getNetwork();
 
   await greeter.deployed();
@@ -39,7 +39,7 @@ async function main() {
 
   // Deploy tweeter
   const Tweeter = await ethers.getContractFactory("Tweeter");
-  const tweeter = await Tweeter.deploy("Tweet, tweet , goerli.");
+  const tweeter = await Tweeter.deploy("Tweet, tweet , GOERLI.");
 
   await tweeter.deployed();
   writeOutputData("Tweeter", tweeter.address, networkName);

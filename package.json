@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy-contract-local": "npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts && node scripts/copy_contract_data.ts",
-    "deploy-contract-goerli": "npx --workspace=hardhat hardhat run --network goerli scripts/deploy.ts && node scripts/copy_contract_data.ts"
+    "contracts:clean": "npx --workspace=hardhat hardhat clean",
+    "contracts:build": "npm run contracts:clean && npx --workspace=hardhat hardhat compile",
+    "contracts:deploy:localhost": "npm run contracts:build && npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts",
+    "contracts:deploy:goerli": "npm run contracts:build && npx --workspace=hardhat hardhat run --network goerli scripts/deploy.ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +23,6 @@
     "chai": "^4.3.6",
     "fs-extra": "^10.0.0",
     "ts-node": "^10.4.0",
-    "typechain": "^7.0.0",
     "typescript": "^4.5.5"
   }
 }

@@ -1,11 +1,14 @@
-#next app build files
+# next app build files
 packages/next-dapp/.next/*
 
 # Env files.
 packages/next-dapp/.env
 packages/hardhat/.env
 
-#Node modules
+# Node modules
 node_modules/*
 packages/next-dapp/node_modules/*
 packages/hardhat/node_modules/*
+
+# Generated Types
+packages/hardhat/typechain-types

@@ -19,7 +19,7 @@ const localhostChain: Chain = {
 };
 
 const chains = [chain.goerli, localhostChain];
-const defaultChain = localhostChain;
+const defaultChain = chain.goerli;
 
 const connectors = () => {
   return [new InjectedConnector({ chains })];
