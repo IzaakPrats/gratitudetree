@@ -1,6 +1,4 @@
 import { useContractRead, useNetwork } from "wagmi";
-import { useEffect, useState } from "react";
-import { Result } from "ethers/lib/utils";
 
 type UseReadContractInfoProps = {
   contractName: string;
@@ -11,9 +9,7 @@ const useReadContractInfo = ({
   contractName,
   methodName,
 }: UseReadContractInfoProps) => {
-  const [contractData, setContractData] = useState<Result | undefined>();
   const [{ data: networkData }] = useNetwork();
-
   const contractAbi =
     require(`../data/${contractName}/${contractName}.json`).abi;
   const chainName = networkData?.chain?.name?.toLowerCase() || "localhost";
@@ -30,11 +26,7 @@ const useReadContractInfo = ({
     }
   );
 
-  useEffect(() => {
-    setContractData(data);
-  }, [data]);
-
-  return { data: contractData, address: contractAddress };
+  return { data, address: contractAddress };
 };
 
 export default useReadContractInfo;
