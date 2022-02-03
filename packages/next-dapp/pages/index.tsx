@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
 import GreeterContractInfo from "../components/GreeterContractInfo";
@@ -15,6 +15,7 @@ import { getShortAddress } from "../utils";
 
 const Home: NextPage = () => {
   const [{ data: accountData }] = useAccount();
+  const [{ data: networkData }] = useNetwork();
   const [currentAccount, setCurrentAccount] = useState<string | undefined>("");
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const Home: NextPage = () => {
             <Connect />
           )}
         </PaddedContainer>
-        {accountData && (
+        {accountData && !networkData?.chain?.unsupported && (
           <div>
             <PaddedContainer>
               <GreeterContractInfo />
