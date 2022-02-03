@@ -7,5 +7,5 @@ packages/hardhat/.env
 
 #Node modules
 node_modules/*
-packages/next-app/node_modules/*
+packages/next-dapp/node_modules/*
 packages/hardhat/node_modules/*
