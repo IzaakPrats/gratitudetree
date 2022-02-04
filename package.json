@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "contracts:clean": "npx --workspace=hardhat hardhat clean",
-    "contracts:build": "npm run contracts:clean && npx --workspace=hardhat hardhat compile",
-    "contracts:deploy:localhost": "npm run contracts:build && npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts && node scripts/copy_contract_data.ts",
-    "contracts:deploy:goerli": "npm run contracts:build && npx --workspace=hardhat hardhat run --network goerli scripts/deploy.ts && node scripts/copy_contract_data.ts"
+    "contracts:build": "npm run contracts:clean && npx --workspace=hardhat hardhat typechain && node scripts/copy_contract_types.ts",
+    "contracts:deploy:localhost": "npx --workspace=hardhat hardhat run --network localhost scripts/deploy.ts && node scripts/copy_contract_data.ts",
+    "contracts:deploy:goerli": "npx --workspace=hardhat hardhat run --network goerli scripts/deploy.ts && node scripts/copy_contract_data.ts"
   },
   "author": "",
   "license": "ISC",

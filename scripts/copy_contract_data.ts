@@ -1,18 +1,15 @@
 const fs = require("fs-extra");
 
-async function main() {
+async function copyContractData() {
   const contractDir = `./packages/hardhat/deployed_contracts`;
-  const typesDir = `./packages/hardhat/typechain-types`;
   const destDir = `./packages/next-dapp/data`;
-  const typesDestDir = `./packages/next-dapp/data/types`;
-  if (!fs.existsSync(typesDestDir)) {
-    fs.mkdirSync(typesDestDir, { recursive: true });
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
   }
   fs.copySync(contractDir, destDir);
-  fs.copySync(typesDir, typesDestDir);
 }
 
-main()
+copyContractData()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
