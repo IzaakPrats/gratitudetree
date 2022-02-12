@@ -8,6 +8,7 @@ import Account from "../components/Account";
 import Connect from "../components/Connect";
 import GreeterContractInfo from "../components/GreeterContractInfo";
 import TweeterContractInfo from "../components/TweeterContractInfo";
+import GratitudeNFTContractInfo from "../components/GratitudeNFTContractInfo";
 import Network from "../components/Network";
 import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
@@ -61,6 +62,9 @@ const Home: NextPage = () => {
             </PaddedContainer>
             <PaddedContainer>
               <TweeterContractInfo />
+            </PaddedContainer>
+            <PaddedContainer>
+              <GratitudeNFTContractInfo />
             </PaddedContainer>
           </div>
         )}

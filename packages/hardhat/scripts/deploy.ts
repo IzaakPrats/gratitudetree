@@ -44,9 +44,17 @@ async function main() {
   await tweeter.deployed();
   writeOutputData("Tweeter", tweeter.address, networkName);
 
+  // Deploy GratitudeNFT
+  const gratitudeNFTFactory = await ethers.getContractFactory("GratitudeNFT");
+  const gratitudeNFT = await gratitudeNFTFactory.deploy();
+
+  await gratitudeNFT.deployed();
+  writeOutputData("GratitudeNFT", gratitudeNFT.address, networkName);
+
   console.log("Deployed to network: ", network);
   console.log("Greeter deployed to:", greeter.address);
   console.log("Tweeter deployed to:", tweeter.address);
+  console.log("GratitudeNFT deployed to:", gratitudeNFT.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

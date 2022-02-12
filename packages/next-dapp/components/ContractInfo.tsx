@@ -1,3 +1,4 @@
+import { useNetwork } from "wagmi";
 import useReadContractInfo from "../hooks/useReadContractInfo";
 import utilStyles from "../styles/util.module.css";
 
