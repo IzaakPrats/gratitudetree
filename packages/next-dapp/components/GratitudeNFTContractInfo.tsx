@@ -2,7 +2,7 @@ import ContractInfo from "./ContractInfo";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
-const GratitudeNFTContractInfo = () => {
+const GratitudeNftContractInfo = () => {
   return (
     <div>
       <ContractInfo contractName={CONTRACT_NAME} />
@@ -10,4 +10,4 @@ const GratitudeNFTContractInfo = () => {
   );
 };
 
-export default GratitudeNFTContractInfo;
+export default GratitudeNftContractInfo;

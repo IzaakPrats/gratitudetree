@@ -44,15 +44,11 @@ contract GratitudeNFT is ERC721 {
         _tokenIdCounter.increment();
     }
 
-    function currentTokenId() public view returns (string memory) {
-        return StringUtil.uint2str(_tokenIdCounter.current());
-    }
-
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory finalSvg = string(
-            abi.encodePacked(_baseSvg, StringUtil.uint2str(_tokenId)    , "</text></svg>")
+            abi.encodePacked(_baseSvg, "GratitudeNFT", "</text></svg>")
         );
 
         string memory json = Base64.encode(

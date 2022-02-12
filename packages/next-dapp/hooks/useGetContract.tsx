@@ -1,14 +1,15 @@
 import { ethers } from "ethers";
-import { useContract, useNetwork } from "wagmi";
+import { useContract, useNetwork, useSigner } from "wagmi";
 
-type UseReadContractInfoProps = {
+type UseGetContractProps = {
   contractName: string;
 };
 
 const useGetContract = ({
   contractName,
-}: UseReadContractInfoProps): ethers.Contract => {
+}: UseGetContractProps): ethers.Contract => {
   const [{ data: networkData }] = useNetwork();
+  const [{ data: signerData }] = useSigner();
   const contractAbi =
     require(`../data/${contractName}/${contractName}.json`).abi;
   const chainName = networkData?.chain?.name?.toLowerCase() || "localhost";
@@ -17,6 +18,7 @@ const useGetContract = ({
   const contract = useContract({
     addressOrName: contractAddress,
     contractInterface: contractAbi,
+    signerOrProvider: signerData,
   });
 
   return contract;

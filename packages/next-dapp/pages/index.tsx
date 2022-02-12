@@ -6,9 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAccount, useNetwork } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
-import GreeterContractInfo from "../components/GreeterContractInfo";
-import TweeterContractInfo from "../components/TweeterContractInfo";
-import GratitudeNFTContractInfo from "../components/GratitudeNFTContractInfo";
+import GratitudeNftContractInfo from "../components/GratitudeNFTContractInfo";
+import GratitudeNftMintContainer from "../components/GratitudeNftMintContainer";
 import Network from "../components/Network";
 import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
@@ -58,7 +57,10 @@ const Home: NextPage = () => {
         {accountData && !networkData?.chain?.unsupported && (
           <div>
             <PaddedContainer>
-              <GratitudeNFTContractInfo />
+              <GratitudeNftContractInfo />
+            </PaddedContainer>
+            <PaddedContainer>
+              <GratitudeNftMintContainer />
             </PaddedContainer>
           </div>
         )}

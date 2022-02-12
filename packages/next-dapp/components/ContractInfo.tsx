@@ -1,6 +1,5 @@
 import { useContract, useNetwork } from "wagmi";
 import useGetContract from "../hooks/useGetContract";
-import useReadContractInfo from "../hooks/useReadContractInfo";
 import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
