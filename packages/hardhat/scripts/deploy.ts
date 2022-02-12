@@ -26,34 +26,18 @@ function writeOutputData(
 }
 
 async function main() {
-  // Deploy greeter
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Greetings, LOCALHOST.");
-  const network = await greeter.provider.getNetwork();
-
-  await greeter.deployed();
-  const networkName =
-    network.chainId === LOCALHOST_CHAIN_ID ? "localhost" : network.name;
-
-  writeOutputData("Greeter", greeter.address, networkName);
-
-  // Deploy tweeter
-  const Tweeter = await ethers.getContractFactory("Tweeter");
-  const tweeter = await Tweeter.deploy("Tweet, tweet , LOCALHOST.");
-
-  await tweeter.deployed();
-  writeOutputData("Tweeter", tweeter.address, networkName);
-
   // Deploy GratitudeNFT
   const gratitudeNFTFactory = await ethers.getContractFactory("GratitudeNFT");
   const gratitudeNFT = await gratitudeNFTFactory.deploy();
+  const network = await gratitudeNFT.provider.getNetwork();
+
+  const networkName =
+    network.chainId === LOCALHOST_CHAIN_ID ? "localhost" : network.name;
 
   await gratitudeNFT.deployed();
   writeOutputData("GratitudeNFT", gratitudeNFT.address, networkName);
 
   console.log("Deployed to network: ", network);
-  console.log("Greeter deployed to:", greeter.address);
-  console.log("Tweeter deployed to:", tweeter.address);
   console.log("GratitudeNFT deployed to:", gratitudeNFT.address);
 }
 

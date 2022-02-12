@@ -58,12 +58,6 @@ const Home: NextPage = () => {
         {accountData && !networkData?.chain?.unsupported && (
           <div>
             <PaddedContainer>
-              <GreeterContractInfo />
-            </PaddedContainer>
-            <PaddedContainer>
-              <TweeterContractInfo />
-            </PaddedContainer>
-            <PaddedContainer>
               <GratitudeNFTContractInfo />
             </PaddedContainer>
           </div>
