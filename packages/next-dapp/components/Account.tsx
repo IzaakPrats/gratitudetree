@@ -16,7 +16,7 @@ const Account = () => {
   }
 
   return (
-    <Stack>
+    <Stack spacing={0}>
       <p>
         {accountData.ens?.name
           ? accountData.ens.name
