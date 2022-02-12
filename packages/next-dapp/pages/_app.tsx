@@ -58,7 +58,7 @@ function App({ Component, pageProps }: AppProps) {
       webSocketProvider={webSocketProvider}
     >
       <ChakraProvider resetCSS={true}>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </ChakraProvider>
     </Provider>
   );

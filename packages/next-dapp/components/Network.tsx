@@ -12,8 +12,7 @@ const Network = () => {
   return (
     <div className={utilStyles.container}>
       <p>
-        Connected to{" "}
-        <span className={utilStyles.field}>{currentChain.name}</span>.
+        Connected to <span>{currentChain.name}</span>.
       </p>
       {currentChain.unsupported && <p>{currentChain.name} unsupported.</p>}
     </div>
