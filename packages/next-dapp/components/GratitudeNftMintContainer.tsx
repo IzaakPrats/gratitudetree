@@ -1,3 +1,5 @@
+import { BigNumber, ethers } from "ethers";
+import { useEffect } from "react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
 import utilStyles from "../styles/util.module.css";
 import styles from "./styles/gratitudeNftMintContainer.module.css";
@@ -6,6 +8,27 @@ const CONTRACT_NAME = "GratitudeNFT";
 
 const GratitudeNftMintContainer = () => {
   const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
+
+  const onNewGratitudeMinted = (
+    owner: string,
+    tokenId: BigNumber,
+    gratitudeData: {}
+  ) => {
+    console.log("New nft %d minted by %s.", tokenId.toNumber(), owner);
+    console.log("NFT data: ", gratitudeData);
+  };
+
+  useEffect(() => {
+    if (contract.signer) {
+      contract.on("NewGratitudeMinted", onNewGratitudeMinted);
+    }
+
+    return () => {
+      if (contract) {
+        contract.off("NewGratitudeMinted", onNewGratitudeMinted);
+      }
+    };
+  }, [contract, contract.signer]);
 
   const mintNft = async () => {
     try {
