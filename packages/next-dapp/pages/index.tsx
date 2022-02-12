@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -41,7 +42,7 @@ const Home: NextPage = () => {
 
       <main>
         <ToastContainer />
-        <h1>Welcome to your new DApp</h1>
+        <Text fontSize="4xl">Welcome to your new DApp</Text>
         {accountData ? (
           <div>
             <Account />

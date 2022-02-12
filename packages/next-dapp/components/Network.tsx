@@ -1,5 +1,5 @@
+import { Stack } from "@chakra-ui/react";
 import { useNetwork } from "wagmi";
-import utilStyles from "../styles/util.module.css";
 
 const Network = () => {
   const [{ data: networkData }] = useNetwork();
@@ -10,12 +10,12 @@ const Network = () => {
 
   const currentChain = networkData.chain;
   return (
-    <div className={utilStyles.container}>
+    <Stack>
       <p>
         Connected to <span>{currentChain.name}</span>.
       </p>
       {currentChain.unsupported && <p>{currentChain.name} unsupported.</p>}
-    </div>
+    </Stack>
   );
 };
 

@@ -1,5 +1,5 @@
+import { Stack } from "@chakra-ui/react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
-import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
   contractName: string;
@@ -11,12 +11,11 @@ const ContractInfo = ({ contractName }: ContractInfoProps) => {
   });
 
   return (
-    <div className={utilStyles.container}>
+    <Stack>
       <p>
-        <span className={utilStyles.field}>Contract Address:</span>{" "}
-        {contract.address}
+        <span>Contract Address:</span> {contract.address}
       </p>
-    </div>
+    </Stack>
   );
 };
 

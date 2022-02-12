@@ -1,7 +1,6 @@
 import { useAccount } from "wagmi";
 import { getShortAddress } from "../utils";
-import utilStyles from "../styles/util.module.css";
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 
 const Account = () => {
   const [{ data: accountData }, disconnect] = useAccount({
@@ -17,7 +16,7 @@ const Account = () => {
   }
 
   return (
-    <div className={utilStyles.container}>
+    <Stack>
       <p>
         {accountData.ens?.name
           ? accountData.ens.name
@@ -31,7 +30,7 @@ const Account = () => {
       ) : (
         <p>Disconnect your account directly through Metamask</p>
       )}
-    </div>
+    </Stack>
   );
 };
 
