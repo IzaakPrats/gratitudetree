@@ -1,17 +1,15 @@
-import useGetContract from "../hooks/useGetContract";
-import useNetworkContractWrite from "../hooks/useNetworkContractWrite";
+import useContractWithSigner from "../hooks/useContractWithSigner";
+import utilStyles from "../styles/util.module.css";
+import styles from "./styles/gratitudeNftMintContainer.module.css";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
 const GratitudeNftMintContainer = () => {
-  const contract = useGetContract({ contractName: CONTRACT_NAME });
+  const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
 
   const mintNft = async () => {
     try {
-      const mintNftTxn = contract.mint("title", "message", "location");
-      console.log("Minting...", mintNftTxn.hash);
-
-      await mintNftTxn.wait();
+      const mintNftTxn = await contract.mint("title", "message", "location");
       console.log("Minted.", mintNftTxn.hash);
     } catch (error) {
       console.log(error);
@@ -19,9 +17,11 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <div>
+    <div className={utilStyles.container}>
       <p>Mint your NFT below.</p>
-      <button onClick={mintNft}>Mint</button>
+      <button className={styles.cta} onClick={mintNft}>
+        Mint
+      </button>
     </div>
   );
 };

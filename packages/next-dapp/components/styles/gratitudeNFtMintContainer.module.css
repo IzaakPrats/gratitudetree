@@ -1,0 +1,17 @@
+.cta {
+  font-family: "Lato-400";
+  font-size: 1rem;
+  border: 1px solid darkslategray;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  background-color: #a5bb99;
+}
+
+.cta:enabled {
+  color: black;
+}
+
+.cta:hover:enabled {
+  background-color: #c6e1b8;
+}

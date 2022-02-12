@@ -5,7 +5,7 @@ type UseGetContractProps = {
   contractName: string;
 };
 
-const useGetContract = ({
+const useContractWithSigner = ({
   contractName,
 }: UseGetContractProps): ethers.Contract => {
   const [{ data: networkData }] = useNetwork();
@@ -24,4 +24,4 @@ const useGetContract = ({
   return contract;
 };
 
-export default useGetContract;
+export default useContractWithSigner;

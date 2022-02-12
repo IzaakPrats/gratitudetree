@@ -1,5 +1,4 @@
-import { useContract, useNetwork } from "wagmi";
-import useGetContract from "../hooks/useGetContract";
+import useContractWithSigner from "../hooks/useContractWithSigner";
 import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
@@ -7,7 +6,7 @@ type ContractInfoProps = {
 };
 
 const ContractInfo = ({ contractName }: ContractInfoProps) => {
-  const contract = useGetContract({
+  const contract = useContractWithSigner({
     contractName: contractName,
   });
 
