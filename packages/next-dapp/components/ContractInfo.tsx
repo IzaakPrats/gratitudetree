@@ -1,29 +1,22 @@
-import { useNetwork } from "wagmi";
+import { useContract, useNetwork } from "wagmi";
+import useGetContract from "../hooks/useGetContract";
 import useReadContractInfo from "../hooks/useReadContractInfo";
 import utilStyles from "../styles/util.module.css";
 
 type ContractInfoProps = {
   contractName: string;
-  methodName: string;
 };
 
-const ContractInfo = ({ contractName, methodName }: ContractInfoProps) => {
-  const { data, address } = useReadContractInfo({
+const ContractInfo = ({ contractName }: ContractInfoProps) => {
+  const contract = useGetContract({
     contractName: contractName,
-    methodName: methodName,
   });
 
   return (
     <div className={utilStyles.container}>
       <p>
-        <span className={utilStyles.field}>Contract Address:</span> {address}
-      </p>
-      <p>
-        {" "}
-        <span className={utilStyles.field}>Contract name:</span> {contractName}
-      </p>
-      <p>
-        <span className={utilStyles.field}>Read {methodName}:</span> {data}
+        <span className={utilStyles.field}>Contract Address:</span>{" "}
+        {contract.address}
       </p>
     </div>
   );

@@ -5,7 +5,7 @@ const CONTRACT_NAME = "GratitudeNFT";
 const GratitudeNFTContractInfo = () => {
   return (
     <div>
-      <ContractInfo contractName={CONTRACT_NAME} methodName="currentTokenId" />
+      <ContractInfo contractName={CONTRACT_NAME} />
     </div>
   );
 };
