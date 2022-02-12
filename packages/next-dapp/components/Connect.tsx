@@ -1,5 +1,5 @@
+import { Button } from "@chakra-ui/react";
 import { useConnect } from "wagmi";
-import styles from "./styles/connect.module.css";
 
 const Connect = () => {
   const [{ data, error }, connect] = useConnect();
@@ -7,8 +7,7 @@ const Connect = () => {
   return (
     <div>
       {data.connectors.map((x) => (
-        <button
-          className={styles.connectorButton}
+        <Button
           key={x.id}
           onClick={() => {
             connect(x);
@@ -17,7 +16,7 @@ const Connect = () => {
         >
           {x.name}
           {!x.ready && " (unsupported)"}
-        </button>
+        </Button>
       ))}
 
       {error && <div>{error?.message ?? "Failed to connect"}</div>}

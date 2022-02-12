@@ -1,8 +1,7 @@
-import { BigNumber, ethers } from "ethers";
+import { BigNumber } from "ethers";
 import { useEffect } from "react";
+import { Button } from "@chakra-ui/react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
-import utilStyles from "../styles/util.module.css";
-import styles from "./styles/gratitudeNftMintContainer.module.css";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
@@ -40,11 +39,9 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <div className={utilStyles.container}>
+    <div>
       <p>Mint your NFT below.</p>
-      <button className={styles.cta} onClick={mintNft}>
-        Mint
-      </button>
+      <Button onClick={mintNft}>Mint</Button>
     </div>
   );
 };

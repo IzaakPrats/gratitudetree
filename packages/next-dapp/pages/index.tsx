@@ -6,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAccount, useNetwork } from "wagmi";
 import Account from "../components/Account";
 import Connect from "../components/Connect";
-import GratitudeNftContractInfo from "../components/GratitudeNFTContractInfo";
+import GratitudeNftContractInfo from "../components/GratitudeNftContractInfo";
 import GratitudeNftMintContainer from "../components/GratitudeNftMintContainer";
 import Network from "../components/Network";
-import PaddedContainer from "../components/PaddedContainer";
 import styles from "../styles/Home.module.css";
 import { getShortAddress } from "../utils";
 
@@ -44,24 +43,18 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <ToastContainer />
         <h1 className={styles.title}>Welcome to your new DApp</h1>
-        <PaddedContainer>
-          {accountData ? (
-            <div>
-              <Account />
-              <Network />
-            </div>
-          ) : (
-            <Connect />
-          )}
-        </PaddedContainer>
+        {accountData ? (
+          <div>
+            <Account />
+            <Network />
+          </div>
+        ) : (
+          <Connect />
+        )}
         {accountData && !networkData?.chain?.unsupported && (
           <div>
-            <PaddedContainer>
-              <GratitudeNftContractInfo />
-            </PaddedContainer>
-            <PaddedContainer>
-              <GratitudeNftMintContainer />
-            </PaddedContainer>
+            <GratitudeNftContractInfo />
+            <GratitudeNftMintContainer />
           </div>
         )}
       </main>

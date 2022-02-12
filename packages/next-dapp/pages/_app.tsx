@@ -1,6 +1,7 @@
 import { providers } from "ethers";
 import type { AppProps } from "next/app";
 import { Chain, chain, Connector, InjectedConnector, Provider } from "wagmi";
+import { ChakraProvider } from "@chakra-ui/react";
 import "../styles/globals.css";
 
 const ALCHEMY_ID = process.env.PUBLIC_ALCHEMY_ID as string;
@@ -56,7 +57,9 @@ function App({ Component, pageProps }: AppProps) {
       provider={provider}
       webSocketProvider={webSocketProvider}
     >
-      <Component {...pageProps} />;
+      <ChakraProvider resetCSS={true}>
+        <Component {...pageProps} />;
+      </ChakraProvider>
     </Provider>
   );
 }
