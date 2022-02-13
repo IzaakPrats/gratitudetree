@@ -4,8 +4,6 @@ import { Chain, chain, Connector, InjectedConnector, Provider } from "wagmi";
 
 import "@fontsource/major-mono-display";
 import "@fontsource/roboto";
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../styles/theme";
 import "../styles/globals.css";
 
 const ALCHEMY_ID = process.env.PUBLIC_ALCHEMY_ID as string;
@@ -61,9 +59,7 @@ function App({ Component, pageProps }: AppProps) {
       provider={provider}
       webSocketProvider={webSocketProvider}
     >
-      <ChakraProvider resetCSS={true} theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <Component {...pageProps} />
     </Provider>
   );
 }

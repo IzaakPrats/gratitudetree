@@ -1,6 +1,5 @@
 import { BigNumber } from "ethers";
 import { useEffect } from "react";
-import { Button, Flex } from "@chakra-ui/react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
 
 const CONTRACT_NAME = "GratitudeNFT";
@@ -39,24 +38,10 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <Flex
-      direction="column"
-      mt={20}
-      borderWidth={2}
-      maxWidth={400}
-      borderRadius={4}
-      pt={8}
-      pb={8}
-      pl={20}
-      pr={20}
-      align="center"
-      justify="center"
-    >
-      <p>Mint your NFT below.</p>
-      <Button mt={4} onClick={mintNft}>
-        Mint
-      </Button>
-    </Flex>
+    <div>
+      <p>Did you meet someone this week who taught you something new?</p>
+      <button onClick={mintNft}>Mint</button>
+    </div>
   );
 };
 

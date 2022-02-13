@@ -12,3 +12,6 @@ packages/hardhat/node_modules/*
 
 # Generated Types
 packages/hardhat/typechain-types
+
+#Random
+**/.DS_Store

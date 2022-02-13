@@ -1,4 +1,3 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -40,28 +39,24 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex direction="column" w="100%" p={4} align="center" justify="center">
+      <main>
         <ToastContainer />
-        <Heading fontSize={"5xl"} textAlign="center">
-          Gratitude Tree
-        </Heading>
+        <h1>Gratitude Tree</h1>
         {accountData ? (
-          <Box mt={8} bg="lightgray" w="100%" p={4} color="black">
+          <div>
             <Account />
             <Network />
-          </Box>
+          </div>
         ) : (
           <Connect />
         )}
         {accountData && !networkData?.chain?.unsupported && (
-          <Flex direction="column" align="center" justify="center" w="100%">
-            <Box bg="lavender" w="100%" p={4} color="black">
-              <GratitudeNftContractInfo />
-            </Box>
+          <div>
+            <GratitudeNftContractInfo />
             <GratitudeNftMintContainer />
-          </Flex>
+          </div>
         )}
-      </Flex>
+      </main>
     </div>
   );
 };

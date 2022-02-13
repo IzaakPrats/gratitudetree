@@ -11,11 +11,9 @@ const ContractInfo = ({ contractName }: ContractInfoProps) => {
   });
 
   return (
-    <Stack>
-      <p>
-        <span>Contract Address:</span> {contract.address}
-      </p>
-    </Stack>
+    <p>
+      <span>Contract Address:</span> {contract.address}
+    </p>
   );
 };
 
