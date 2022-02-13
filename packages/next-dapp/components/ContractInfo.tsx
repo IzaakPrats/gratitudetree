@@ -1,4 +1,5 @@
 import useContractWithSigner from "../hooks/useContractWithSigner";
+import { getShortAddress } from "../utils";
 
 type ContractInfoProps = {
   contractName: string;
@@ -11,7 +12,7 @@ const ContractInfo = ({ contractName }: ContractInfoProps) => {
 
   return (
     <p>
-      <span>Contract Address:</span> {contract.address}
+      <span>Contract Address:</span> {getShortAddress(contract.address)}
     </p>
   );
 };
