@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAccount, useNetwork } from "wagmi";
-import Account from "../components/Account";
-import Connect from "../components/Connect";
-import GratitudeNftContractInfo from "../components/GratitudeNFTContractInfo";
-import GratitudeNftMintContainer from "../components/GratitudeNftMintContainer";
-import Network from "../components/Network";
+import {
+  Network,
+  Connect,
+  Account,
+  GratitudeNftContractInfo,
+  GratitudeNftMintContainer,
+} from "../components";
 import { getShortAddress } from "../utils";
 
 const Home: NextPage = () => {
