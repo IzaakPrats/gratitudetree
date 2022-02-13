@@ -45,7 +45,7 @@ const Home: NextPage = () => {
         <ToastContainer />
         <h1 className="text-3xl font-bold">Gratitude Tree</h1>
         {accountData ? (
-          <div>
+          <div className="font-mono">
             <Account />
             <Network />
           </div>
