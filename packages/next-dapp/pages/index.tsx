@@ -35,15 +35,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="my-12">
         {accountData && (
-          <div className="bg-indigo-300 font-mono absolute top-0 right-0 p-4">
+          <div className="bg-indigo-300 font-mono absolute bottom-0 right-0 p-4">
             <Account />
             <Network />
             {!networkData?.chain?.unsupported && <GratitudeNftContractInfo />}
           </div>
         )}
-        <h1 className="text-3xl font-bold">Gratitude Tree</h1>
+        <h1 className="text-center text-5xl">Gratitude Tree</h1>
         {!accountData && <Connect />}
         {accountData && !networkData?.chain?.unsupported && (
           <GratitudeNftMintContainer />
