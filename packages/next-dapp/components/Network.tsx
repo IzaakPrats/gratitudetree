@@ -1,4 +1,3 @@
-import { Stack } from "@chakra-ui/react";
 import { useNetwork } from "wagmi";
 
 const Network = () => {
@@ -10,12 +9,12 @@ const Network = () => {
 
   const currentChain = networkData.chain;
   return (
-    <Stack>
+    <div>
       <p>
         Connected to <span>{currentChain.name}</span>.
       </p>
       {currentChain.unsupported && <p>{currentChain.name} unsupported.</p>}
-    </Stack>
+    </div>
   );
 };
 
