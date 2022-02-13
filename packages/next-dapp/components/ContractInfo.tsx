@@ -1,4 +1,3 @@
-import { Stack } from "@chakra-ui/react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
 
 type ContractInfoProps = {
