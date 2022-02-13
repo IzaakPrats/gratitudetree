@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useAccount, useNetwork } from "wagmi";
 import {
   Network,
@@ -26,10 +24,6 @@ const Home: NextPage = () => {
     const accountAddress = accountData?.address;
     if (accountAddress && accountAddress !== currentAccount) {
       setCurrentAccount(accountAddress);
-      toast(
-        `Account switched to ${getShortAddress(accountAddress) ?? "undefined"}`,
-        { autoClose: 2000 }
-      );
     }
   }, [accountData]);
 
@@ -41,22 +35,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex-column space-y-4">
-        <ToastContainer />
-        <h1 className="text-3xl font-bold">Gratitude Tree</h1>
-        {accountData ? (
-          <div className="font-mono">
+      <main className="my-12">
+        {accountData && (
+          <div className="bg-indigo-300 font-mono absolute bottom-0 right-0 p-4">
             <Account />
             <Network />
+            {!networkData?.chain?.unsupported && <GratitudeNftContractInfo />}
           </div>
-        ) : (
-          <Connect />
         )}
+        <h1 className="text-center text-5xl">Gratitude Tree</h1>
+        {!accountData && <Connect />}
         {accountData && !networkData?.chain?.unsupported && (
-          <div className="space-y-4">
-            <GratitudeNftContractInfo />
-            <GratitudeNftMintContainer />
-          </div>
+          <GratitudeNftMintContainer />
         )}
       </main>
     </div>

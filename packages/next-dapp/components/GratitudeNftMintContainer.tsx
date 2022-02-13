@@ -38,9 +38,14 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <div className="flex-column rounded border shadow">
-      <p>Did you meet someone this week who taught you something new?</p>
-      <button onClick={mintNft}>Mint</button>
+    <div className="my-8 space-y-8 p-8 max-w-sm border text-center shadow rounded-lg">
+      <p>What are you grateful for?</p>
+      <button
+        className="rounded rounded-lg py-2 px-4 shadow bg-indigo-300 hover:bg-indigo-200"
+        onClick={mintNft}
+      >
+        Mint
+      </button>
     </div>
   );
 };
