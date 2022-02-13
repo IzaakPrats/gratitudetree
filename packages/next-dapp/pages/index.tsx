@@ -41,17 +41,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex-column space-y-4">
+      <main>
         <ToastContainer />
-        <h1 className="text-3xl font-bold">Gratitude Tree</h1>
-        {accountData ? (
-          <div className="font-mono">
+        {accountData && (
+          <div className="bg-indigo-300 font-mono absolute top-0 right-0 p-4">
             <Account />
             <Network />
           </div>
-        ) : (
-          <Connect />
         )}
+        <h1 className="text-3xl font-bold">Gratitude Tree</h1>
+        {!accountData && <Connect />}
         {accountData && !networkData?.chain?.unsupported && (
           <div className="space-y-4">
             <GratitudeNftContractInfo />
