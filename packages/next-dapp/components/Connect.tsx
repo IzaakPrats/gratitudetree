@@ -1,5 +1,4 @@
 import { useConnect } from "wagmi";
-import styles from "./styles/connect.module.css";
 
 const Connect = () => {
   const [{ data, error }, connect] = useConnect();
@@ -8,7 +7,6 @@ const Connect = () => {
     <div>
       {data.connectors.map((x) => (
         <button
-          className={styles.connectorButton}
           key={x.id}
           onClick={() => {
             connect(x);

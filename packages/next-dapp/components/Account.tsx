@@ -1,38 +1,23 @@
 import { useAccount } from "wagmi";
 import { getShortAddress } from "../utils";
-import utilStyles from "../styles/util.module.css";
 
 const Account = () => {
-  const [{ data: accountData, error, loading }, disconnect] = useAccount({
+  const [{ data: accountData }, disconnect] = useAccount({
     fetchEns: true,
   });
-
-  const canProgrammaticallyDisconnect = () => {
-    return accountData?.connector && accountData.connector.name !== "MetaMask";
-  };
 
   if (!accountData) {
     return <p>No connected account.</p>;
   }
 
   return (
-    <div className={utilStyles.container}>
+    <div>
       <p>
         {accountData.ens?.name
           ? accountData.ens.name
           : getShortAddress(accountData.address)}
       </p>
-      <p>
-        Connected to{" "}
-        <span className={utilStyles.field}>{accountData.connector?.name}</span>
-      </p>
-      {canProgrammaticallyDisconnect() ? (
-        <button className={utilStyles.cta} onClick={disconnect}>
-          Disconnect
-        </button>
-      ) : (
-        <p>Disconnect your account directly through Metamask</p>
-      )}
+      <p>Connected to {accountData.connector?.name}</p>
     </div>
   );
 };

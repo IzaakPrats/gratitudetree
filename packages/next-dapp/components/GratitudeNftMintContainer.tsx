@@ -1,8 +1,6 @@
-import { BigNumber, ethers } from "ethers";
+import { BigNumber } from "ethers";
 import { useEffect } from "react";
 import useContractWithSigner from "../hooks/useContractWithSigner";
-import utilStyles from "../styles/util.module.css";
-import styles from "./styles/gratitudeNftMintContainer.module.css";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
@@ -40,11 +38,9 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <div className={utilStyles.container}>
-      <p>Mint your NFT below.</p>
-      <button className={styles.cta} onClick={mintNft}>
-        Mint
-      </button>
+    <div>
+      <p>Did you meet someone this week who taught you something new?</p>
+      <button onClick={mintNft}>Mint</button>
     </div>
   );
 };

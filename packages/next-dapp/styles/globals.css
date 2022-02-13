@@ -38,21 +38,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #ab5a73;
-  font-family: "Lato";
-  font-size: 1.2rem;
-  color: #ffffff;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-p {
-  display: inline-block;
-  word-break: break-word;
-  margin: 0.25rem;
 }
 
 * {

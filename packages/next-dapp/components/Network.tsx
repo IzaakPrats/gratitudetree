@@ -1,5 +1,4 @@
 import { useNetwork } from "wagmi";
-import utilStyles from "../styles/util.module.css";
 
 const Network = () => {
   const [{ data: networkData }] = useNetwork();
@@ -10,10 +9,9 @@ const Network = () => {
 
   const currentChain = networkData.chain;
   return (
-    <div className={utilStyles.container}>
+    <div>
       <p>
-        Connected to{" "}
-        <span className={utilStyles.field}>{currentChain.name}</span>.
+        Connected to <span>{currentChain.name}</span>.
       </p>
       {currentChain.unsupported && <p>{currentChain.name} unsupported.</p>}
     </div>
