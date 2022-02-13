@@ -1,6 +1,5 @@
 import { useAccount } from "wagmi";
 import { getShortAddress } from "../utils";
-import { Stack } from "@chakra-ui/react";
 
 const Account = () => {
   const [{ data: accountData }, disconnect] = useAccount({
@@ -12,14 +11,14 @@ const Account = () => {
   }
 
   return (
-    <Stack spacing={0}>
+    <div>
       <p>
         {accountData.ens?.name
           ? accountData.ens.name
           : getShortAddress(accountData.address)}
       </p>
       <p>Connected to {accountData.connector?.name}</p>
-    </Stack>
+    </div>
   );
 };
 
