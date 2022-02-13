@@ -2,7 +2,7 @@ import { useAccount } from "wagmi";
 import { getShortAddress } from "../utils";
 
 const Account = () => {
-  const [{ data: accountData }, disconnect] = useAccount({
+  const [{ data: accountData }] = useAccount({
     fetchEns: true,
   });
 
