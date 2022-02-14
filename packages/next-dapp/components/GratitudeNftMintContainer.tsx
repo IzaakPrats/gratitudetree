@@ -10,7 +10,7 @@ type GratitudeData = {
   location: string;
 };
 
-type Props = {
+type GratitudeNftMintContainerProps = {
   onMintSuccess: (
     title: string,
     message: string,
@@ -18,7 +18,9 @@ type Props = {
   ) => void;
 };
 
-const GratitudeNftMintContainer = ({ onMintSuccess }: Props) => {
+const GratitudeNftMintContainer = ({
+  onMintSuccess,
+}: GratitudeNftMintContainerProps) => {
   const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
   const { chainName, contractAddress } = useNetworkContractInfo({
     contractName: CONTRACT_NAME,
