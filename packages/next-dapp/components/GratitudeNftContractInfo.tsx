@@ -1,11 +1,10 @@
 import ContractInfo from "./ContractInfo";
-
-const CONTRACT_NAME = "GratitudeNFT";
+import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
 
 const GratitudeNftContractInfo = () => {
   return (
     <div className="font-mono">
-      <ContractInfo contractName={CONTRACT_NAME} />
+      <ContractInfo contractName={GRATITUDE_CONTRACT_NAME} />
     </div>
   );
 };

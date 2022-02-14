@@ -1,6 +1,8 @@
 import { providers } from "ethers";
 import type { AppProps } from "next/app";
 import { Chain, chain, Connector, InjectedConnector, Provider } from "wagmi";
+import { Layout } from "../components";
+import { AppWrapper } from "../context/AppContext";
 
 import "@fontsource/major-mono-display";
 import "@fontsource/roboto";
@@ -59,7 +61,11 @@ function App({ Component, pageProps }: AppProps) {
       provider={provider}
       webSocketProvider={webSocketProvider}
     >
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppWrapper>
     </Provider>
   );
 }

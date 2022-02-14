@@ -2,9 +2,9 @@ import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
 import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
 import { openseaUrl } from "../utils";
-import { GratitudeData } from "../types/contractTypes";
-
-const CONTRACT_NAME = "GratitudeNFT";
+import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
+import { GratitudeData } from "../data/types/GratitudeNFT";
+import { useAccount } from "wagmi";
 
 type GratitudeNftMintContainerProps = {
   onMintSuccess: (
@@ -17,9 +17,12 @@ type GratitudeNftMintContainerProps = {
 const GratitudeNftMintContainer = ({
   onMintSuccess,
 }: GratitudeNftMintContainerProps) => {
-  const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
+  const [{ data: accountData }] = useAccount();
+  const contract = useContractWithSigner({
+    contractName: GRATITUDE_CONTRACT_NAME,
+  });
   const { chainName, contractAddress } = useNetworkContractInfo({
-    contractName: CONTRACT_NAME,
+    contractName: GRATITUDE_CONTRACT_NAME,
   });
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
@@ -37,13 +40,15 @@ const GratitudeNftMintContainer = ({
     tokenId: BigNumber,
     gratitudeData: GratitudeData
   ) => {
-    onMintSuccess(
-      gratitudeData?.title,
-      gratitudeData?.message,
-      openseaUrl(chainName, contractAddress, tokenId.toNumber())
-    );
-    console.log("New nft %d minted by %s.", tokenId.toNumber(), owner);
-    console.log("NFT data: ", gratitudeData);
+    if (accountData?.address.localeCompare(owner) == 0) {
+      onMintSuccess(
+        gratitudeData?.title,
+        gratitudeData?.message,
+        openseaUrl(chainName, contractAddress, tokenId.toNumber())
+      );
+      console.log("New nft %d minted by %s.", tokenId.toNumber(), owner);
+      console.log("NFT data: ", gratitudeData);
+    }
   };
 
   useEffect(() => {
