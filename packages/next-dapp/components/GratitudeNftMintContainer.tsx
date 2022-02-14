@@ -1,6 +1,5 @@
 import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
 import useContractWithSigner from "../hooks/useContractWithSigner";
 
 const CONTRACT_NAME = "GratitudeNFT";
