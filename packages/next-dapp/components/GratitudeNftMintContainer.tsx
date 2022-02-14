@@ -2,8 +2,8 @@ import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
 import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
 import { openseaUrl } from "../utils";
-import { GratitudeData } from "../types/contractTypes";
 import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
+import { GratitudeData } from "../data/types/GratitudeNFT";
 
 type GratitudeNftMintContainerProps = {
   onMintSuccess: (

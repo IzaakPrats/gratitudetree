@@ -15,7 +15,7 @@ const Feed = () => {
       <div className="px-4 py-2 bg-orange-300 hover:bg-orange-200 rounded-lg shadow">
         <Link href="/">Home</Link>
       </div>
-      {feedItems()}
+      <div className="my-8 space-y-4">{feedItems()}</div>
     </>
   );
 };
