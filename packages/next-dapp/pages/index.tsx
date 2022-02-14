@@ -69,7 +69,7 @@ const Home: NextPage = () => {
           </div>
         )}
         <h1 className="text-center text-5xl">Gratitude Tree</h1>
-        <div className="px-4 py-2 my-4 border rounded-lg bg-orange-300 hover:bg-orange-200">
+        <div className="px-4 py-2 my-4 border rounded-lg bg-orange-300 hover:bg-orange-200 shadow">
           <Link href="/feed">Go to Feed</Link>
         </div>
         {!accountData && <Connect />}
