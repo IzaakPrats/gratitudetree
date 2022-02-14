@@ -11,7 +11,11 @@ type GratitudeData = {
   location: string;
 };
 
-const GratitudeNftMintContainer = ({ onMintSuccess }) => {
+type Props = {
+  onMintSuccess: (title: string, message: string) => void;
+};
+
+const GratitudeNftMintContainer = ({ onMintSuccess }: Props) => {
   const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
