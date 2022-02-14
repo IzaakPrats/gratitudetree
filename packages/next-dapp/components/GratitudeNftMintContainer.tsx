@@ -5,18 +5,14 @@ import useContractWithSigner from "../hooks/useContractWithSigner";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
-type NewGratitudeNftData = {
-  tokenId: number;
+type GratitudeData = {
   title: string;
   message: string;
   location: string;
 };
 
-const GratitudeNftMintContainer = () => {
+const GratitudeNftMintContainer = ({ onMintSuccess }) => {
   const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
-  const [{ data: accountData }] = useAccount();
-  const [newGratitudeNftData, setNewGratitudeNftData] =
-    useState<NewGratitudeNftData>();
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -31,8 +27,9 @@ const GratitudeNftMintContainer = () => {
   const onNewGratitudeMinted = (
     owner: string,
     tokenId: BigNumber,
-    gratitudeData: {}
+    gratitudeData: GratitudeData
   ) => {
+    onMintSuccess(gratitudeData?.title, gratitudeData?.message);
     console.log("New nft %d minted by %s.", tokenId.toNumber(), owner);
     console.log("NFT data: ", gratitudeData);
   };
