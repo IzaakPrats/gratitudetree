@@ -61,7 +61,7 @@ const Home: NextPage = () => {
 
       <main className="my-12">
         {accountData && (
-          <div className="bg-indigo-400 font-mono absolute bottom-0 right-0 p-4">
+          <div className="bg-orange-200 font-mono absolute bottom-0 right-0 p-4">
             <Account />
             <Network />
             {!networkData?.chain?.unsupported && <GratitudeNftContractInfo />}
