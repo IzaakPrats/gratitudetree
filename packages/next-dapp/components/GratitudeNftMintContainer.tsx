@@ -42,7 +42,7 @@ const GratitudeNftMintContainer = () => {
       <p className="text-lg text-slate-600">What are you grateful for?</p>
       <textarea className="p-2 w-full border shadow rounded-lg" rows={4} />
       <button
-        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-300 hover:bg-indigo-200 text-slate-700 font-bold"
+        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 text-slate-700 font-bold"
         onClick={mintNft}
       >
         Mint
