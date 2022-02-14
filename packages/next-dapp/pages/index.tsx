@@ -9,7 +9,6 @@ import {
   GratitudeNftContractInfo,
   GratitudeNftMintContainer,
 } from "../components";
-import { getShortAddress } from "../utils";
 
 const Home: NextPage = () => {
   const [{ data: accountData }] = useAccount();
