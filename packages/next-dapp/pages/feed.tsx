@@ -57,12 +57,12 @@ const Feed = () => {
   };
 
   return (
-    <div className="m-auto flex flex-col items-center my-8 space-y-4">
+    <>
       <div className="px-4 py-2 bg-orange-300 hover:bg-orange-200 rounded-lg shadow">
         <Link href="/">Home</Link>
       </div>
       {feedItems()}
-    </div>
+    </>
   );
 };
 
