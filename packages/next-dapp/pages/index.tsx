@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAccount, useNetwork } from "wagmi";
 import "react-notifications/lib/notifications.css";
@@ -59,7 +60,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="my-12">
+      <main className="my-12 flex flex-col items-center">
         {accountData && (
           <div className="bg-orange-200 font-mono absolute bottom-0 right-0 p-4">
             <Account />
@@ -68,6 +69,9 @@ const Home: NextPage = () => {
           </div>
         )}
         <h1 className="text-center text-5xl">Gratitude Tree</h1>
+        <div className="px-4 py-2 border rounded-lg bg-orange-300 hover:bg-orange-200">
+          <Link href="/feed">Go to Feed</Link>
+        </div>
         {!accountData && <Connect />}
         {accountData && !networkData?.chain?.unsupported && (
           <GratitudeNftMintContainer onMintSuccess={onGratitudeMintSuccess} />
