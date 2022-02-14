@@ -1,14 +1,7 @@
+import { GratitudeFeedItemData } from "./data";
+
 type GratitudeFeedItemProps = {
   data: GratitudeFeedItemData;
-};
-
-export type GratitudeFeedItemData = {
-  title: string;
-  message: string;
-  location: string;
-  creator: string;
-  link: string;
-  timestamp: number;
 };
 
 const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {

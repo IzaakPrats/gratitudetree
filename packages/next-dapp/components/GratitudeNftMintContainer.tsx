@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
 import { openseaUrl } from "../utils";
 import { GratitudeData } from "../types/contractTypes";
-
-const CONTRACT_NAME = "GratitudeNFT";
+import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
 
 type GratitudeNftMintContainerProps = {
   onMintSuccess: (
@@ -17,9 +16,11 @@ type GratitudeNftMintContainerProps = {
 const GratitudeNftMintContainer = ({
   onMintSuccess,
 }: GratitudeNftMintContainerProps) => {
-  const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
+  const contract = useContractWithSigner({
+    contractName: GRATITUDE_CONTRACT_NAME,
+  });
   const { chainName, contractAddress } = useNetworkContractInfo({
-    contractName: CONTRACT_NAME,
+    contractName: GRATITUDE_CONTRACT_NAME,
   });
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");

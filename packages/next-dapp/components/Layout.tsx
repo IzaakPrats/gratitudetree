@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 type LayoutProps = {
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element;
 };
 
 export default function Layout({ children }: LayoutProps) {
