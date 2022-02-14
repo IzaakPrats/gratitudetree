@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
-import useContractWithSigner from "../hooks/useContractWithSigner";
+import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
 
 const CONTRACT_NAME = "GratitudeNFT";
 
@@ -11,11 +11,18 @@ type GratitudeData = {
 };
 
 type Props = {
-  onMintSuccess: (title: string, message: string) => void;
+  onMintSuccess: (
+    title: string,
+    message: string,
+    publishAddress: string
+  ) => void;
 };
 
 const GratitudeNftMintContainer = ({ onMintSuccess }: Props) => {
   const contract = useContractWithSigner({ contractName: CONTRACT_NAME });
+  const { chainName, contractAddress } = useNetworkContractInfo({
+    contractName: CONTRACT_NAME,
+  });
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -27,12 +34,20 @@ const GratitudeNftMintContainer = ({ onMintSuccess }: Props) => {
     setLocation("");
   };
 
+  const getNewNftPublishAddress = (tokenId: number) => {
+    return `https://testnets.opensea.io/assets/${chainName}/${contractAddress}/${tokenId}`;
+  };
+
   const onNewGratitudeMinted = (
     owner: string,
     tokenId: BigNumber,
     gratitudeData: GratitudeData
   ) => {
-    onMintSuccess(gratitudeData?.title, gratitudeData?.message);
+    onMintSuccess(
+      gratitudeData?.title,
+      gratitudeData?.message,
+      getNewNftPublishAddress(tokenId.toNumber())
+    );
     console.log("New nft %d minted by %s.", tokenId.toNumber(), owner);
     console.log("NFT data: ", gratitudeData);
   };

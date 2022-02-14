@@ -34,11 +34,19 @@ const Home: NextPage = () => {
     }
   }, [accountData]);
 
-  const onGratitudeMintSuccess = (title: string, message: string) => {
+  const onGratitudeMintSuccess = (
+    title: string,
+    message: string,
+    url: string
+  ) => {
     NotificationManager.success(
       `Title: ${title}  Message: ${message}`,
       "Gratitude Shipped!",
-      3000
+      3000,
+      () => {
+        const win = window.open(url, "_blank");
+        win?.focus();
+      }
     );
   };
 
