@@ -38,10 +38,11 @@ const GratitudeNftMintContainer = () => {
   };
 
   return (
-    <div className="my-8 space-y-8 p-8 max-w-sm border text-center shadow rounded-lg">
-      <p>What are you grateful for?</p>
+    <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg">
+      <p className="text-lg text-slate-600">What are you grateful for?</p>
+      <textarea className="p-2 w-full border shadow rounded-lg" rows={4} />
       <button
-        className="rounded rounded-lg py-2 px-4 shadow bg-indigo-300 hover:bg-indigo-200"
+        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 text-slate-700 font-bold"
         onClick={mintNft}
       >
         Mint
