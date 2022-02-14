@@ -28,6 +28,11 @@ contract GratitudeNFT is ERC721 {
 
     constructor() ERC721("GratitudeNFT", "Gratitude") { }
 
+    function metadata(uint256 _tokenId) public view returns (GratitudeData memory) {
+        require(_tokenId < _tokenIdCounter.current(), "Invalid token Id.");
+        return _gratitudeData[_tokenId];
+    }
+
     function mint(string memory _title, string memory _message, string memory _location) public {
         uint256 newNftId = _tokenIdCounter.current();
         _safeMint(msg.sender, newNftId);

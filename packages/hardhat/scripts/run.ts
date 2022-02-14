@@ -12,6 +12,9 @@ const main = async () => {
 
   await nftContract.mint("title1", "message1", "location1");
   console.log(await nftContract.tokenURI(1));
+
+  const metadata = await nftContract.metadata(1);
+  console.log(metadata);
 };
 
 main()
