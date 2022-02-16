@@ -28,7 +28,7 @@ const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
       </div>
       <div className="flex flex-col justify-between">
         <a
-          className="px-4 py-2 bg-indigo-400 hover:bg-indigo-200 hover:text-slate-600 rounded-lg text-white font-bold shadow"
+          className="px-4 py-2 hover:bg-indigo-400 hover:text-white rounded-lg font-bold shadow"
           href={data.link}
           target="_blank"
           rel="noreferrer"
@@ -37,7 +37,7 @@ const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
         </a>
         <div className="text-center">
           <a
-            className="font-bold px-4 py-2 hover:bg-red-100 rounded-lg"
+            className="font-bold px-4 py-2 hover:bg-red-200 rounded-lg shadow"
             href="https://www.google.com"
             target="_blank"
             rel="noreferrer"
