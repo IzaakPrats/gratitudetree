@@ -1,10 +1,11 @@
 import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
 import { openseaUrl } from "../utils";
 import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
 import { GratitudeData } from "../data/types/GratitudeNFT";
-import { useAccount } from "wagmi";
+import { getRandomPrompt } from "../utils/prompts";
 
 type GratitudeNftMintContainerProps = {
   onMintSuccess: (
@@ -28,6 +29,7 @@ const GratitudeNftMintContainer = ({
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>("");
 
   const resetForm = () => {
     setTitle("");
@@ -50,6 +52,10 @@ const GratitudeNftMintContainer = ({
       console.log("NFT data: ", gratitudeData);
     }
   };
+
+  useEffect(() => {
+    setPrompt(getRandomPrompt());
+  }, []);
 
   useEffect(() => {
     if (contract.signer) {
@@ -78,7 +84,7 @@ const GratitudeNftMintContainer = ({
 
   return (
     <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600">
-      <p className="text-lg font-bold">What are you grateful for?</p>
+      <p className="text-lg font-bold">{prompt}</p>
       <div>
         <p className="text-s font-bold">Title</p>
         <textarea
@@ -107,7 +113,7 @@ const GratitudeNftMintContainer = ({
         />
       </div>
       <button
-        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 disabled:bg-slate-200 text-slate-700 font-bold"
+        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 hover:text-slate-600 disabled:bg-slate-200 text-white font-bold"
         disabled={isMinting}
         onClick={mintNft}
       >
