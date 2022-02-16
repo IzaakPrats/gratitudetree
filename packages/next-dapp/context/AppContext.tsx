@@ -54,23 +54,28 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
 
   useEffect(() => {
     async function fetchGratitudeData() {
+      if (!contract || !contract.signer) {
+        return;
+      }
       try {
         const latestGratitudeData = await contract.getLatestGratitudeData(50);
         setGratitudes(
-          latestGratitudeData.map((gratitudeData: GratitudeDataWithTokenId) => {
-            return {
-              creator: gratitudeData.creator,
-              title: gratitudeData.title,
-              message: gratitudeData.message,
-              location: gratitudeData.location,
-              timestamp: gratitudeData.timestamp.toNumber(),
-              link: openseaUrl(
-                chainName,
-                contractAddress,
-                gratitudeData.tokenId.toNumber()
-              ),
-            };
-          })
+          latestGratitudeData?.map(
+            (gratitudeData: GratitudeDataWithTokenId) => {
+              return {
+                creator: gratitudeData.creator,
+                title: gratitudeData.title,
+                message: gratitudeData.message,
+                location: gratitudeData.location,
+                timestamp: gratitudeData.timestamp.toNumber(),
+                link: openseaUrl(
+                  chainName,
+                  contractAddress,
+                  gratitudeData.tokenId.toNumber()
+                ),
+              };
+            }
+          )
         );
       } catch (error) {
         console.log(error);

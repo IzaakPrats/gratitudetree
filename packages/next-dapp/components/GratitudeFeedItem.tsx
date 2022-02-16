@@ -1,4 +1,5 @@
 import { GratitudeFeedItemData } from "./data";
+import { getShortAddress } from "../utils/formatters";
 
 type GratitudeFeedItemProps = {
   data: GratitudeFeedItemData;
@@ -6,11 +7,23 @@ type GratitudeFeedItemProps = {
 
 const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
   return (
-    <div className="p-8 w-full space-x-4 max-w-xl flex flex-row justify-between	border shadow rounded-lg text-slate-600">
+    <div className="p-8 w-full space-x-4 max-w-xl flex flex-row justify-between	border shadow rounded-lg text-slate-600 hover:bg-amber-50">
       <div>
-        <p className="font-bold">{data.title}</p>
-        <p>{data.message}</p>
-        <p className="italic">{data.location}</p>
+        <p className="font-bold text-lg">{data.title}</p>
+        <p className="italic">
+          Thoughtfully written by{" "}
+          <a
+            href={`https://goerli.etherscan.io/address/${data.creator}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="px-2 py-1 rounded text-white font-bold bg-orange-400 hover:bg-orange-200">
+              {getShortAddress(data.creator)}
+            </span>
+          </a>
+        </p>
+        <p className="my-2">{data.message}</p>
+        <p className="my-2 italic">{data.location}</p>
       </div>
       <div>
         <a
