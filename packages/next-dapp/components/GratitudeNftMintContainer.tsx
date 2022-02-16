@@ -109,7 +109,7 @@ const GratitudeNftMintContainer = ({
   const formIncomplete: boolean = message.length == 0 || title.length == 0;
 
   return (
-    <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600">
+    <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600 bg-white">
       <p className="text-lg font-bold">{prompt}</p>
       <div>
         <p className="text-s font-bold">Title*</p>

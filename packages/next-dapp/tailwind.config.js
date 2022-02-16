@@ -6,7 +6,11 @@ module.exports = {
     "./components/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "cherry-blossom-branch": "url('/cherry_blossom_branch.png')",
+      },
+    },
   },
   plugins: [],
 };

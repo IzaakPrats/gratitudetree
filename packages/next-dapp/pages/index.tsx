@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import type { NextPage } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useAccount, useNetwork } from "wagmi";
 import "react-notifications/lib/notifications.css";
@@ -54,7 +55,7 @@ const Home: NextPage = () => {
     <>
       <NotificationContainer />
       {accountData && (
-        <div className="bg-orange-200 font-mono absolute bottom-0 right-0 p-4">
+        <div className="bg-orange-200 font-mono fixed bottom-0 right-0 p-4">
           <Account />
           <Network />
           {!networkData?.chain?.unsupported && <GratitudeNftContractInfo />}
