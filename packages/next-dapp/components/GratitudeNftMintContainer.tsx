@@ -109,13 +109,13 @@ const GratitudeNftMintContainer = ({
   const formIncomplete: boolean = message.length == 0 || title.length == 0;
 
   return (
-    <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600 bg-white">
+    <div className="m-auto flex flex-col my-8 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600 bg-white">
       <p className="text-lg font-bold">{prompt}</p>
       <div>
         <p className="text-s font-bold">Title*</p>
         <textarea
           className={`p-2 w-full border shadow rounded-lg ${
-            overTitleCharLimit ? "border-red-400" : "border-slate-200"
+            overTitleCharLimit ? "border-red-400 border-2" : "border-slate-200"
           }`}
           value={title}
           rows={1}
@@ -127,7 +127,9 @@ const GratitudeNftMintContainer = ({
         <p className="text-s font-bold">Message*</p>
         <textarea
           className={`p-2 w-full border shadow rounded-lg ${
-            overMessageCharLimit ? "border-red-400" : "border-slate-200"
+            overMessageCharLimit
+              ? "border-red-400 border-2"
+              : "border-slate-200"
           }`}
           rows={4}
           value={message}
@@ -139,7 +141,9 @@ const GratitudeNftMintContainer = ({
         <p className="text-s font-bold">Location</p>
         <textarea
           className={`p-2 w-full border shadow rounded-lg ${
-            overLocationCharLimit ? "border-red-400" : "border-slate-200"
+            overLocationCharLimit
+              ? "border-red-400 border-2"
+              : "border-slate-200"
           }`}
           rows={1}
           value={location}

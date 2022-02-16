@@ -13,7 +13,7 @@ const Feed = () => {
   return (
     <>
       <Link href="/">
-        <a className="px-4 py-2 bg-orange-300 hover:bg-orange-200 rounded-lg shadow">
+        <a className="px-4 py-2 bg-red-400 hover:bg-orange-200 rounded-lg shadow font-bold text-white">
           Home
         </a>
       </Link>

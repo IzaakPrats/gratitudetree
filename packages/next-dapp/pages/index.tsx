@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         </div>
       )}
       <Link href="/feed">
-        <a className="px-4 py-2 my-4 border rounded-lg bg-orange-300 hover:bg-orange-200 shadow">
+        <a className="px-4 py-2 my-4 border rounded-lg bg-red-400 hover:bg-orange-200 shadow text-white font-bold">
           Go to Feed
         </a>
       </Link>
