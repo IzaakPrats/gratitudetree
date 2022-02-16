@@ -107,7 +107,7 @@ const GratitudeNftMintContainer = ({
         />
       </div>
       <button
-        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 disabled:bg-slate-200 text-slate-700 font-bold"
+        className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 hover:text-slate-600 disabled:bg-slate-200 text-white font-bold"
         disabled={isMinting}
         onClick={mintNft}
       >
