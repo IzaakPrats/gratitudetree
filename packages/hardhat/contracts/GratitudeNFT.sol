@@ -9,22 +9,34 @@ import {Base64} from "./libraries/Base64.sol";
 import {StringUtil} from "./libraries/StringUtil.sol";
  
 contract GratitudeNFT is ERC721 {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIdCounter;
+
+    event NewGratitudeMinted(address sender, uint256 tokenId, GratitudeData tokenData);
+
     struct GratitudeData {
+        address creator;
         string title;
         string message;
         string location;
         uint256 timestamp;
-    }
+    } 
 
-    event NewGratitudeMinted(address sender, uint256 tokenId, GratitudeData tokenData);
+    struct GratitudeDataWithTokenId {
+        address creator;
+        string title;
+        string message;
+        string location;
+        uint256 timestamp;
+        uint256 tokenId;
+    } 
+
+    mapping(uint256 => GratitudeData) private _gratitudeData;
+    uint256 _totalGratitudes;
     
     string private _baseSvg =
         "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
     
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
-    
-    mapping(uint256 => GratitudeData) private _gratitudeData;
 
     constructor() ERC721("GratitudeNFT", "Gratitude") { }
 
@@ -33,20 +45,52 @@ contract GratitudeNFT is ERC721 {
         return _gratitudeData[_tokenId];
     }
 
+    //TODO This logic won't work if tokens are burned. Update _burn cleanup logic.
+    function getLatestGratitudeData(uint32 _maxNumber) public view returns (GratitudeDataWithTokenId[] memory) {
+        uint256 numGratitudes = _maxNumber;
+        if (numGratitudes > _totalGratitudes) {
+            numGratitudes = _totalGratitudes;
+        }
+
+        GratitudeDataWithTokenId[] memory latestGratitudeData = new GratitudeDataWithTokenId[](numGratitudes);
+
+        uint256 counter = _totalGratitudes;
+        uint256 i = 0;
+        GratitudeData memory gratitudeData;
+        for (counter; counter >= _totalGratitudes - numGratitudes + 1; counter--) {
+            gratitudeData = _gratitudeData[counter];
+            latestGratitudeData[i] = GratitudeDataWithTokenId({
+                tokenId: counter,
+                creator: gratitudeData.creator,
+                title: gratitudeData.title,
+                message: gratitudeData.message,
+                location: gratitudeData.location,
+                timestamp: gratitudeData.timestamp
+            });
+            i++;
+        }
+
+        return latestGratitudeData;
+    }
+
     function mint(string memory _title, string memory _message, string memory _location) public {
+        _tokenIdCounter.increment();
+
         uint256 newNftId = _tokenIdCounter.current();
         _safeMint(msg.sender, newNftId);
 
         GratitudeData memory data = GratitudeData({
+            creator: msg.sender,
             title: _title,
             message: _message,
             location: _location,
             timestamp: block.timestamp
         });
         _gratitudeData[newNftId] = data;
+        _totalGratitudes++;
+
 
         emit NewGratitudeMinted(msg.sender, newNftId, data);
-        _tokenIdCounter.increment();
     }
 
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
