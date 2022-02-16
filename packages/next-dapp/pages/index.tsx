@@ -61,7 +61,6 @@ const Home: NextPage = () => {
           {!networkData?.chain?.unsupported && <GratitudeNftContractInfo />}
         </div>
       )}
-      <h1 className="text-center text-5xl">Gratitude Tree</h1>
       <Link href="/feed">
         <a className="px-4 py-2 my-4 border rounded-lg bg-orange-300 hover:bg-orange-200 shadow">
           Go to Feed
