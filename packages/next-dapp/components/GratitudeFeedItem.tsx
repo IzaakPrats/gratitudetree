@@ -23,7 +23,7 @@ const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
             </span>
           </a>
         </p>
-        <p className="my-2">{data.message}</p>
+        <p className="my-4">{data.message}</p>
         <p className="my-2 italic">{data.location}</p>
       </div>
       <div className="flex flex-col justify-between">
