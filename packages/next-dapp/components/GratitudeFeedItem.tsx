@@ -6,7 +6,7 @@ type GratitudeFeedItemProps = {
 
 const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
   return (
-    <div className="p-8 w-full max-w-xl flex flex-row justify-between	 border shadow rounded-lg text-slate-600">
+    <div className="p-8 w-full max-w-xl flex flex-row justify-between	border shadow rounded-lg text-slate-600">
       <div>
         <p className="font-bold">{data.title}</p>
         <p>{data.message}</p>

@@ -2,8 +2,15 @@ import { BigNumber } from "ethers";
 import { createContext, useContext, useEffect, useState } from "react";
 import GratitudeFeedItemData from "../components/data/GratitudeNftFeedItemData";
 import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
-import { GratitudeData } from "../data/types/GratitudeNFT";
-import { useContractWithSigner, useNetworkContractInfo } from "../hooks";
+import {
+  GratitudeData,
+  GratitudeDataWithTokenId,
+} from "../data/types/GratitudeNFT";
+import {
+  useContractWithSigner,
+  useNetworkContractRead,
+  useNetworkContractInfo,
+} from "../hooks";
 import { openseaUrl } from "../utils";
 
 type AppContextValue = {
@@ -34,7 +41,7 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
     console.log("NFT data: ", gratitudeData);
     setGratitudes((prevState) => [
       {
-        creator: owner,
+        creator: gratitudeData.creator,
         title: gratitudeData.title,
         message: gratitudeData.message,
         location: gratitudeData.location,
@@ -44,6 +51,33 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
       ...prevState,
     ]);
   };
+
+  useEffect(() => {
+    async function fetchGratitudeData() {
+      try {
+        const latestGratitudeData = await contract.getLatestGratitudeData(50);
+        setGratitudes(
+          latestGratitudeData.map((gratitudeData: GratitudeDataWithTokenId) => {
+            return {
+              creator: gratitudeData.creator,
+              title: gratitudeData.title,
+              message: gratitudeData.message,
+              location: gratitudeData.location,
+              timestamp: gratitudeData.timestamp.toNumber(),
+              link: openseaUrl(
+                chainName,
+                contractAddress,
+                gratitudeData.tokenId.toNumber()
+              ),
+            };
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchGratitudeData();
+  }, [contract, contract.signer]);
 
   useEffect(() => {
     if (contract.signer) {
