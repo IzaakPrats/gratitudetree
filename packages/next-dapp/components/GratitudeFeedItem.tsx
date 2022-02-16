@@ -1,5 +1,6 @@
 import { GratitudeFeedItemData } from "./data";
 import { getShortAddress } from "../utils/formatters";
+import Image from "next/image";
 
 type GratitudeFeedItemProps = {
   data: GratitudeFeedItemData;
@@ -7,7 +8,7 @@ type GratitudeFeedItemProps = {
 
 const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
   return (
-    <div className="p-8 w-full space-x-4 max-w-xl flex flex-row justify-between	border shadow rounded-lg text-slate-600 hover:bg-amber-50">
+    <div className="p-8 w-full space-x-4 max-w-xl flex flex-row justify-between	border shadow rounded-lg text-slate-600">
       <div>
         <p className="font-bold text-lg">{data.title}</p>
         <p className="italic">
@@ -25,7 +26,7 @@ const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
         <p className="my-2">{data.message}</p>
         <p className="my-2 italic">{data.location}</p>
       </div>
-      <div>
+      <div className="flex flex-col justify-between">
         <a
           className="px-4 py-2 bg-indigo-400 hover:bg-indigo-200 hover:text-slate-600 rounded-lg text-white font-bold shadow"
           href={data.link}
@@ -34,6 +35,16 @@ const GratitudFeedItem = ({ data }: GratitudeFeedItemProps) => {
         >
           Opensea
         </a>
+        <div className="text-center">
+          <a
+            className="font-bold px-4 py-2 hover:bg-red-100 rounded-lg"
+            href="https://www.google.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Like
+          </a>
+        </div>
       </div>
     </div>
   );
