@@ -7,6 +7,10 @@ import { GRATITUDE_CONTRACT_NAME } from "../data/constants";
 import { GratitudeData } from "../data/types/GratitudeNFT";
 import { getRandomPrompt } from "../utils/prompts";
 
+const MAX_CHARACTER_COUNT_MESSAGE = 150;
+const MAX_CHARACTER_COUNT_TITLE = 50;
+const MAX_CHARACTER_COUNT_LOCATION = 50;
+
 type GratitudeNftMintContainerProps = {
   onMintSuccess: (
     title: string,
@@ -82,43 +86,84 @@ const GratitudeNftMintContainer = ({
     }
   };
 
+  const characterCount = (maxCharCount: number, charCount: number) => {
+    const overCharacterLimit: boolean = maxCharCount - charCount < 0;
+    return (
+      <p
+        className={`text-xs font-bold text-right ${
+          overCharacterLimit ? "text-red-600" : "text-slate-600"
+        }`}
+      >
+        {maxCharCount - charCount} remaining
+      </p>
+    );
+  };
+
+  const overMessageCharLimit: boolean =
+    MAX_CHARACTER_COUNT_MESSAGE < message.length;
+  const overTitleCharLimit: boolean = MAX_CHARACTER_COUNT_TITLE < title.length;
+  const overLocationCharLimit: boolean =
+    MAX_CHARACTER_COUNT_LOCATION < location.length;
+  const overCharLimit: boolean =
+    overMessageCharLimit || overTitleCharLimit || overLocationCharLimit;
+  const formIncomplete: boolean = message.length == 0 || title.length == 0;
+
   return (
     <div className="m-auto flex flex-col my-16 space-y-4 p-8 w-full max-w-lg border shadow rounded-lg text-slate-600">
       <p className="text-lg font-bold">{prompt}</p>
       <div>
-        <p className="text-s font-bold">Title</p>
+        <p className="text-s font-bold">Title*</p>
         <textarea
-          className="p-2 w-full border shadow rounded-lg"
+          className={`p-2 w-full border shadow rounded-lg ${
+            overTitleCharLimit ? "border-red-400" : "border-slate-200"
+          }`}
           value={title}
           rows={1}
           onChange={(e) => setTitle(e.target.value)}
         />
+        {characterCount(MAX_CHARACTER_COUNT_TITLE, title.length)}
       </div>
       <div>
-        <p className="text-s font-bold">Message</p>
+        <p className="text-s font-bold">Message*</p>
         <textarea
-          className="p-2 w-full border shadow rounded-lg"
+          className={`p-2 w-full border shadow rounded-lg ${
+            overMessageCharLimit ? "border-red-400" : "border-slate-200"
+          }`}
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
+        {characterCount(MAX_CHARACTER_COUNT_MESSAGE, message.length)}
       </div>
       <div>
         <p className="text-s font-bold">Location</p>
         <textarea
-          className="p-2 w-full border shadow rounded-lg"
+          className={`p-2 w-full border shadow rounded-lg ${
+            overLocationCharLimit ? "border-red-400" : "border-slate-200"
+          }`}
           rows={1}
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
+        {characterCount(MAX_CHARACTER_COUNT_LOCATION, location.length)}
       </div>
       <button
         className="py-2 px-4 rounded rounded-lg shadow bg-indigo-400 hover:bg-indigo-200 hover:text-slate-600 disabled:bg-slate-200 text-white font-bold"
-        disabled={isMinting}
+        disabled={isMinting || overCharLimit || formIncomplete}
         onClick={mintNft}
       >
         Mint
       </button>
+      {overCharLimit && (
+        <p className="text-xs font-bold text-center text-slate-600">
+          Please correct character limit errors.
+        </p>
+      )}
+      {formIncomplete && (
+        <p className="text-xs font-bold text-center text-slate-600">
+          Please fill out required fields.
+        </p>
+      )}
     </div>
   );
 };
