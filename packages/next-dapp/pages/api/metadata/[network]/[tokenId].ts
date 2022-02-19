@@ -32,7 +32,7 @@ export default async function handler(req: any, res: any) {
   )
 
   // Grab gratitude data from the chain
-  const chainData: GratitudeData = await gratitudeNft.metadata(tokenId)
+  const chainData: GratitudeData = await gratitudeNft.getGratitudeData(tokenId)
 
   // Setup Etherscan Provider
   const etherscanProvider = new ethers.providers.EtherscanProvider(
