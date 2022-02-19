@@ -1,12 +1,20 @@
+import { ethers } from 'ethers'
+import fs from 'fs'
+import { isExpressionWithTypeArguments } from 'typescript'
+import contractAbi from '../../../../data/GratitudeNFT/GratitudeNFT.json'
+
 /* 
   This handler will take in a tokenId, pull in the metadata from the chain, and create an SVG on demand. 
 */
 
 // TODO @izaak
-// const ALCHEMY_KEY = 'ligrFYullfEd6hPhts46CKSCt4QalP9A'
+const ALCHEMY_KEY = 'ligrFYullfEd6hPhts46CKSCt4QalP9A'
 
 export default function handler(req, res) {
-  const { tokenId } = req.query
+  const { network, tokenId } = req.query
+
+  console.log(network)
+  console.log(tokenId)
 
   var metadata = {
     name: `Gratitude #${tokenId}`,
@@ -16,8 +24,18 @@ export default function handler(req, res) {
   }
 
   // grab metadata from chain
-  // const provider = new AlchemyProvider("homestead", ALCHEMY_KEY);
-  // TODO @izaak update contract metadata to be public
+  const provider = new ethers.providers.AlchemyProvider(
+    'homestead',
+    ALCHEMY_KEY
+  )
+  const contractAddress = JSON.parse(
+    fs.readFileSync(`../../../../data/GratitudeNFT/${network}`, 'utf8')
+  )['address']
+  const gratitudeNft = new ethers.Contract(
+    contractAddress,
+    contractAbi,
+    provider
+  )
 
   // gen attributes
   metadata.attributes.push(
