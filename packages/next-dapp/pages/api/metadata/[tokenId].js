@@ -2,7 +2,8 @@
   This handler will take in a tokenId, pull in the metadata from the chain, and create an SVG on demand. 
 */
 
-const ALCHEMY_KEY = 'ligrFYullfEd6hPhts46CKSCt4QalP9A'
+// TODO @izaak
+// const ALCHEMY_KEY = 'ligrFYullfEd6hPhts46CKSCt4QalP9A'
 
 export default function handler(req, res) {
   const { tokenId } = req.query
@@ -31,7 +32,6 @@ export default function handler(req, res) {
   )
 
   // gen image
-  var image = '' // do svg stuff here
   metadata['image_data'] = ''
 
   res.status(200).json(metadata).end()
