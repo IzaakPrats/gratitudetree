@@ -1,5 +1,3 @@
-import ethers from ethers
-
 /* 
   This handler will take in a tokenId, pull in the metadata from the chain, and create an SVG on demand. 
 */
@@ -13,25 +11,28 @@ export default function handler(req, res) {
     name: `Gratitude #${tokenId}`,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pulvinar eget metus non rhoncus.',
-    attributes: []
+    attributes: [],
   }
 
   // grab metadata from chain
   // const provider = new AlchemyProvider("homestead", ALCHEMY_KEY);
-  // TODO @izaak update contract metadata to be public 
+  // TODO @izaak update contract metadata to be public
 
   // gen attributes
-  metadata.attributes.push({
-    "trait_type": 'Likes',
-    "value": 0
-  }, {
-    "trait_type": "References",
-    "value": 0
-  })
+  metadata.attributes.push(
+    {
+      trait_type: 'Likes',
+      value: 0,
+    },
+    {
+      trait_type: 'References',
+      value: 0,
+    }
+  )
 
   // gen image
   var image = '' // do svg stuff here
-  metadata['image_data'] = '' 
+  metadata['image_data'] = ''
 
   res.status(200).json(metadata).end()
 }
