@@ -19,7 +19,7 @@ contract GratitudeNFT is ERC721 {
         string title;
         string message;
         string location;
-        uint256 timestamp;
+        uint timestamp;
     } 
 
     struct GratitudeDataWithTokenId {
@@ -27,12 +27,12 @@ contract GratitudeNFT is ERC721 {
         string title;
         string message;
         string location;
-        uint256 timestamp;
-        uint256 tokenId;
+        uint timestamp;
+        uint tokenId;
     } 
 
-    mapping(uint256 => GratitudeData) private _gratitudeData;
-    uint256 _totalGratitudes;
+    mapping(uint => GratitudeData) private _gratitudeData;
+    uint _totalGratitudes;
     
     string private _baseSvg =
         "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
@@ -40,7 +40,7 @@ contract GratitudeNFT is ERC721 {
 
     constructor() ERC721("GratitudeNFT", "Gratitude") { }
 
-    function metadata(uint256 _tokenId) public view returns (GratitudeData memory) {
+    function getGratitudeData(uint _tokenId) public view returns (GratitudeData memory) {
         require(_tokenId < _tokenIdCounter.current(), "Invalid token Id.");
         return _gratitudeData[_tokenId];
     }
@@ -54,8 +54,8 @@ contract GratitudeNFT is ERC721 {
 
         GratitudeDataWithTokenId[] memory latestGratitudeData = new GratitudeDataWithTokenId[](numGratitudes);
 
-        uint256 counter = _totalGratitudes;
-        uint256 i = 0;
+        uint counter = _totalGratitudes;
+        uint i = 0;
         GratitudeData memory gratitudeData;
         for (counter; counter >= _totalGratitudes - numGratitudes + 1; counter--) {
             gratitudeData = _gratitudeData[counter];
